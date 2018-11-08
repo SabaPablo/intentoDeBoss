@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Images/Player.png" type="Texture" id=2]
@@ -153,6 +153,25 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=18]
+
+resource_name = "Idle_slash"
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 86, 87 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -312,7 +331,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 7.51722, 14.5595 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -325,7 +344,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 7
-frame = 4
+frame = 87
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="Anim" type="AnimationPlayer" parent="." index="1"]
@@ -343,6 +362,7 @@ anims/Down = SubResource( 5 )
 anims/Enfundar = SubResource( 6 )
 anims/Idle = SubResource( 7 )
 anims/Idle_down = SubResource( 8 )
+anims/Idle_slash = SubResource( 18 )
 anims/Jump = SubResource( 9 )
 anims/Power = SubResource( 10 )
 anims/Run = SubResource( 11 )
@@ -357,5 +377,32 @@ blend_times = [  ]
 
 position = Vector2( -0.17482, 2.62237 )
 shape = SubResource( 17 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+
+offset = Vector2( 100, -50 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 1.0
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing" ]
 
 

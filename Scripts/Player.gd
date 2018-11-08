@@ -1,11 +1,15 @@
 extends KinematicBody2D
 
-const SPEED = 100
+const SPEED = 150
 const GRAVITY = 20
 const JUMP_POWER = 450
 const FLOOR = Vector2(0,-1)
 const ACCELERATION = 10
+const VELOCITY_CAMERA_H = 2
+const FRICTION_IDLE = 8
+const FRICTION_DOWN_SLASH = 2
 var friction = 6
+
 var velocity = Vector2()
 var switch_anim = ""
 
@@ -34,6 +38,8 @@ func movement_loop(delta):
 	if RIGHT:
 		velocity.x += ACCELERATION
 		$Sprite.flip_h = false
+		var res = $Camera2D.get_offset().x + VELOCITY_CAMERA_H
+		$Camera2D.set_offset(Vector2(min(100,res),$Camera2D.get_offset().y))
 		velocity.x = min(velocity.x,SPEED)
 		if is_on_floor():
 			anim_switch("Run")
@@ -41,27 +47,31 @@ func movement_loop(delta):
 		velocity.x -= ACCELERATION
 		velocity.x = max(velocity.x,-SPEED)
 		$Sprite.flip_h = true
+		var res = $Camera2D.get_offset().x - VELOCITY_CAMERA_H
+		$Camera2D.set_offset(Vector2(max(-100,res),$Camera2D.get_offset().y))
 		if is_on_floor():
 			anim_switch("Run")
 	else:
 		if velocity.x < 0:
 			velocity.x += friction
 			velocity.x = min(velocity.x,0)
+			anim_switch("Idle_slash")
 		elif velocity.x > 0:
 			velocity.x -= friction
 			velocity.x = max(velocity.x,0)
+			anim_switch("Idle_slash")
 		else:
 			velocity.x = 0
-		if is_on_floor():
-			anim_switch("Idle")
-	friction = 5
+			if is_on_floor():
+				anim_switch("Idle")
+	friction = FRICTION_IDLE
 	if UP:
 		if is_on_floor():
 			velocity.y = -JUMP_POWER
 			anim_switch("Jump")
 	elif DOWN && !LEFT && !RIGHT:
 		if is_on_floor() && velocity.x!=0:
-			friction = 2
+			friction = FRICTION_DOWN_SLASH
 			anim_switch("Slash")
 		elif is_on_floor() && velocity.x ==0:
 			anim_switch("Idle_down")

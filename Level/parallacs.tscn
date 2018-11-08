@@ -13,9 +13,8 @@
 [ext_resource path="res://Images/Free Pixel Art Forest/PNG/Background layers/Layer_0001_8.png" type="Texture" id=11]
 [ext_resource path="res://Images/Free Pixel Art Forest/PNG/Background layers/Layer_0000_9.png" type="Texture" id=12]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -23,7 +22,6 @@ __meta__ = {
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
 
-editor/display_folded = true
 layer = -40
 offset = Vector2( 0, -200 )
 rotation = 0.0
@@ -275,8 +273,8 @@ stretch_mode = 0
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="9"]
 
-editor/display_folded = true
-z_index = -11
+z_index = 2
+z_as_relative = false
 motion_scale = Vector2( 1, 1 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 928, 0 )
@@ -301,8 +299,7 @@ stretch_mode = 0
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="10"]
 
-editor/display_folded = true
-z_index = -10
+z_index = 3
 motion_scale = Vector2( 1, 1 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 928, 0 )
