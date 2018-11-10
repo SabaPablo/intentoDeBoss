@@ -101,22 +101,22 @@ animations = [ {
 "speed": 18.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 7.71779, 14.9322 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 70.4356, 27.5811 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 5.08258, 13.351 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" index="0"]
+[node name="KinematicBody2D" type="KinematicBody2D"]
 
 input_pickable = true
 collision_layer = 1
@@ -128,8 +128,8 @@ _sections_unfolded = [ "Pickable", "Transform" ]
 [node name="Animation" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "React"
-frame = 1
+animation = "Idle"
+frame = 9
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -147,7 +147,7 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/AttackeZone" index="0"]
 
 position = Vector2( -31.6224, -10.0138 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="AreaDeVision" type="Area2D" parent="Animation" index="1"]
 
@@ -163,12 +163,12 @@ audio_bus_name = "Master"
 
 position = Vector2( 64.0326, -3.91496 )
 scale = Vector2( 1, 0.794428 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 position = Vector2( -4.74336, 4.21632 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="." index="2"]
 

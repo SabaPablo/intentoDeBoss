@@ -6,9 +6,9 @@
 [sub_resource type="Animation" id=1]
 
 resource_name = "Atack1"
-length = 0.6
-loop = true
-step = 0.05
+length = 0.94
+loop = false
+step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -16,16 +16,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49 ]
+"values": [ 39, 40, 41, 42, 43, 44, 45, 46, 47, 49 ]
 }
 
 [sub_resource type="Animation" id=2]
 
 resource_name = "Atack2"
-length = 0.4
+length = 0.35
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -44,8 +44,8 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 
 resource_name = "Atack3"
-length = 0.6
-loop = true
+length = 0.57
+loop = false
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -120,7 +120,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=7]
 
 resource_name = "Idle"
-length = 0.4
+length = 1.4
 loop = true
 step = 0.1
 tracks/0/type = "value"
@@ -130,7 +130,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.3, 0.7, 1.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
@@ -323,7 +323,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 7.51722, 14.5595 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -336,7 +336,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 7
-frame = 98
+frame = 4
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="Anim" type="AnimationPlayer" parent="." index="1"]

@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const SPEED = 150
 const GRAVITY = 15
-const JUMP_POWER = 450
+const JUMP_POWER = 350
 const FLOOR = Vector2(0,-1)
 const ACCELERATION = 10
 const VELOCITY_CAMERA_H = 2
@@ -35,25 +35,14 @@ func movement_loop(delta):
 	var RIGHT 	= Input.is_action_pressed("ui_right")
 	var UP	 	= Input.is_action_pressed("ui_up")
 	var DOWN 	= Input.is_action_pressed("ui_down")
-	var PUNCH 	= Input.is_action_pressed("a")
+	var PUNCH 	= Input.is_action_pressed("ui_select")
 
 	if RIGHT:
-		velocity.x += ACCELERATION
-		$Sprite.flip_h = false
-		var res = $Camera2D.get_offset().x + VELOCITY_CAMERA_H
-		$Camera2D.set_offset(Vector2(min(100,res),$Camera2D.get_offset().y))
-		velocity.x = min(velocity.x,SPEED)
-		if is_on_floor():
-			anim_switch("Run")
+		moveRigth()
 	elif LEFT:
-		velocity.x -= ACCELERATION
-		velocity.x = max(velocity.x,-SPEED)
-		$Sprite.flip_h = true
-		var res = $Camera2D.get_offset().x - VELOCITY_CAMERA_H
-		$Camera2D.set_offset(Vector2(max(-100,res),$Camera2D.get_offset().y))
-		if is_on_floor():
-			anim_switch("Run")
+		moveLeft()
 	else:
+		#rozamiento
 		if velocity.x < 0:
 			velocity.x += friction
 			velocity.x = min(velocity.x,0)
@@ -66,6 +55,7 @@ func movement_loop(delta):
 			velocity.x = 0
 			if is_on_floor():
 				anim_switch("Idle")
+				#ataque
 				if PUNCH:
 					anim_switch("Atack1")
 	friction = FRICTION_IDLE
@@ -73,7 +63,13 @@ func movement_loop(delta):
 		if is_on_floor():
 			velocity.y = -JUMP_POWER
 			anim_switch("Jump")
-	elif DOWN && !LEFT && !RIGHT:
+	if DOWN && LEFT:
+		if is_on_floor() && velocity.x!=0:
+			friction = FRICTION_DOWN_SLASH
+			anim_switch("Slash")
+		elif is_on_floor() && velocity.x ==0:
+			anim_switch("Idle_down")
+	if DOWN && RIGHT:
 		if is_on_floor() && velocity.x!=0:
 			friction = FRICTION_DOWN_SLASH
 			anim_switch("Slash")
@@ -85,3 +81,22 @@ func movement_loop(delta):
 	velocity.y += GRAVITY
 	
 	velocity = move_and_slide(velocity, FLOOR)
+	
+	
+func moveRigth():
+	velocity.x += ACCELERATION
+	$Sprite.flip_h = false
+	velocity.x = min(velocity.x,SPEED)
+	var res = $Camera2D.get_offset().x + VELOCITY_CAMERA_H
+	$Camera2D.set_offset(Vector2(min(100,res),$Camera2D.get_offset().y))
+	if is_on_floor():
+		anim_switch("Run")
+
+func moveLeft():
+	velocity.x -= ACCELERATION
+	$Sprite.flip_h = true
+	velocity.x = max(velocity.x,-SPEED)
+	var res = $Camera2D.get_offset().x - VELOCITY_CAMERA_H
+	$Camera2D.set_offset(Vector2(max(-100,res),$Camera2D.get_offset().y))
+	if is_on_floor():
+		anim_switch("Run")
