@@ -1,0 +1,188 @@
+[gd_scene load_steps=66 format=2]
+
+[ext_resource path="res://Scripts/Skeleton.gd" type="Script" id=1]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-0.png" type="Texture" id=2]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-1.png" type="Texture" id=3]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-2.png" type="Texture" id=4]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-3.png" type="Texture" id=5]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-4.png" type="Texture" id=6]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-5.png" type="Texture" id=7]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-6.png" type="Texture" id=8]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-7.png" type="Texture" id=9]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-8.png" type="Texture" id=10]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-9.png" type="Texture" id=11]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-10.png" type="Texture" id=12]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-1.png" type="Texture" id=13]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-2.png" type="Texture" id=14]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-3.png" type="Texture" id=15]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-4.png" type="Texture" id=16]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-5.png" type="Texture" id=17]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-6.png" type="Texture" id=18]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-7.png" type="Texture" id=19]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-8.png" type="Texture" id=20]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-9.png" type="Texture" id=21]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-10.png" type="Texture" id=22]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-11.png" type="Texture" id=23]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-12.png" type="Texture" id=24]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-13.png" type="Texture" id=25]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Dead/dead-14.png" type="Texture" id=26]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/React/hit-0.png" type="Texture" id=27]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/React/hit-1.png" type="Texture" id=28]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/React/hit-2.png" type="Texture" id=29]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/React/hit-3.png" type="Texture" id=30]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-0.png" type="Texture" id=31]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-1.png" type="Texture" id=32]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-2.png" type="Texture" id=33]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-3.png" type="Texture" id=34]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-4.png" type="Texture" id=35]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-5.png" type="Texture" id=36]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-6.png" type="Texture" id=37]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-7.png" type="Texture" id=38]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-8.png" type="Texture" id=39]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-9.png" type="Texture" id=40]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-10.png" type="Texture" id=41]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-11.png" type="Texture" id=42]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Walk/walk-12.png" type="Texture" id=43]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-0.png" type="Texture" id=44]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-1.png" type="Texture" id=45]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-2.png" type="Texture" id=46]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-3.png" type="Texture" id=47]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-4.png" type="Texture" id=48]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-5.png" type="Texture" id=49]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-6.png" type="Texture" id=50]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-7.png" type="Texture" id=51]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-8.png" type="Texture" id=52]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-9.png" type="Texture" id=53]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-10.png" type="Texture" id=54]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-11.png" type="Texture" id=55]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-12.png" type="Texture" id=56]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-13.png" type="Texture" id=57]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-14.png" type="Texture" id=58]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-15.png" type="Texture" id=59]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-16.png" type="Texture" id=60]
+[ext_resource path="res://Images/Skeleton/Sprite Sheets/Attack/attac-17.png" type="Texture" id=61]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "Hit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 61 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "React",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ) ],
+"loop": true,
+"name": "Walk_Angry",
+"speed": 18.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 7.71779, 14.9322 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 70.4356, 27.5811 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 5.08258, 13.351 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" index="0"]
+
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pickable", "Transform" ]
+
+[node name="Animation" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "React"
+frame = 1
+playing = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="AttackeZone" type="Area2D" parent="Animation" index="0"]
+
+position = Vector2( 41.8997, 13.703 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/AttackeZone" index="0"]
+
+position = Vector2( -31.6224, -10.0138 )
+shape = SubResource( 3 )
+
+[node name="AreaDeVision" type="Area2D" parent="Animation" index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/AreaDeVision" index="0"]
+
+position = Vector2( 64.0326, -3.91496 )
+scale = Vector2( 1, 0.794428 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( -4.74336, 4.21632 )
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="body_entered" from="Animation/AttackeZone" to="." method="_on_AttackeZone_body_entered"]
+
+[connection signal="body_exited" from="Animation/AttackeZone" to="." method="_on_AttackeZone_body_exited"]
+
+[connection signal="body_entered" from="Animation/AreaDeVision" to="." method="_on_AreaDeVision_body_entered"]
+
+[connection signal="body_exited" from="Animation/AreaDeVision" to="." method="_on_AreaDeVision_body_exited"]
+
+

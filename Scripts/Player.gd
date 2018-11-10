@@ -1,13 +1,14 @@
 extends KinematicBody2D
 
 const SPEED = 150
-const GRAVITY = 20
+const GRAVITY = 15
 const JUMP_POWER = 450
 const FLOOR = Vector2(0,-1)
 const ACCELERATION = 10
 const VELOCITY_CAMERA_H = 2
 const FRICTION_IDLE = 8
 const FRICTION_DOWN_SLASH = 2
+const TYPE = "PLAYER"
 var friction = 6
 
 var velocity = Vector2()
@@ -34,7 +35,8 @@ func movement_loop(delta):
 	var RIGHT 	= Input.is_action_pressed("ui_right")
 	var UP	 	= Input.is_action_pressed("ui_up")
 	var DOWN 	= Input.is_action_pressed("ui_down")
-	
+	var PUNCH 	= Input.is_action_pressed("a")
+
 	if RIGHT:
 		velocity.x += ACCELERATION
 		$Sprite.flip_h = false
@@ -64,6 +66,8 @@ func movement_loop(delta):
 			velocity.x = 0
 			if is_on_floor():
 				anim_switch("Idle")
+				if PUNCH:
+					anim_switch("Atack1")
 	friction = FRICTION_IDLE
 	if UP:
 		if is_on_floor():
@@ -76,6 +80,7 @@ func movement_loop(delta):
 		elif is_on_floor() && velocity.x ==0:
 			anim_switch("Idle_down")
 			
+
 
 	velocity.y += GRAVITY
 	

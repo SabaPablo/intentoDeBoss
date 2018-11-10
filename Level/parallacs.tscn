@@ -13,7 +13,7 @@
 [ext_resource path="res://Images/Free Pixel Art Forest/PNG/Background layers/Layer_0001_8.png" type="Texture" id=11]
 [ext_resource path="res://Images/Free Pixel Art Forest/PNG/Background layers/Layer_0000_9.png" type="Texture" id=12]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
