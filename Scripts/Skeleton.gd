@@ -65,7 +65,7 @@ func _on_AreaDeVision_body_entered(body):
 		print("muereee")
 		$Animation.play("React")
 		wait = true
-		$Timer.start()
+		$timer.start()
 		get_exclamation(self.position.x,self.position.y,"exclamation")
 		modo_diablo()
 
@@ -79,9 +79,9 @@ func _on_AreaDeVision_body_exited(body):
 	if body.get("TYPE") == "PLAYER":
 		modo_lazy()
 		wait = true
-		$Timer.start()
+		$timer.start()
 		get_exclamation(self.position.x,self.position.y,"quest")
-		$Timer.start()
+		$timer.start()
 		print("Se fue?")
 		$Animation.play("React")
 
