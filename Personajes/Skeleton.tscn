@@ -129,7 +129,7 @@ _sections_unfolded = [ "Pickable", "Transform" ]
 
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 9
+frame = 6
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -164,6 +164,7 @@ audio_bus_name = "Master"
 position = Vector2( 64.0326, -3.91496 )
 scale = Vector2( 1, 0.794428 )
 shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 

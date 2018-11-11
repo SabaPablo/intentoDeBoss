@@ -24,7 +24,7 @@ func _physics_process(delta):
 func anim_switch(newanim):
 	switch_anim = newanim
 
-func animation_loop(delta):
+func animation_loop(newAnim):
 	if $Anim.current_animation != switch_anim:
 		$Anim.play(switch_anim)
 
@@ -55,31 +55,31 @@ func movement_loop(delta):
 			velocity.x = 0
 			if is_on_floor():
 				anim_switch("Idle")
+				$Stand.disabled = false
+
 				#ataque
 				if PUNCH:
 					anim_switch("Atack1")
 	friction = FRICTION_IDLE
 	if UP:
-		if is_on_floor():
-			velocity.y = -JUMP_POWER
-			anim_switch("Jump")
-	if DOWN && LEFT:
-		if is_on_floor() && velocity.x!=0:
+		jump()
+	if velocity.y > 0:
+		fallingDown()
+	
+	if DOWN && !(RIGHT || LEFT):
+		if is_on_floor() && velocity.x != 0:
 			friction = FRICTION_DOWN_SLASH
 			anim_switch("Slash")
-		elif is_on_floor() && velocity.x ==0:
-			anim_switch("Idle_down")
-	if DOWN && RIGHT:
-		if is_on_floor() && velocity.x!=0:
-			friction = FRICTION_DOWN_SLASH
-			anim_switch("Slash")
-		elif is_on_floor() && velocity.x ==0:
-			anim_switch("Idle_down")
+			$Stand.disabled = true
+			
 			
 
-
-	velocity.y += GRAVITY
+		elif is_on_floor() && velocity.x == 0:
+			anim_switch("Idle_down")
+			
 	
+		
+	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, FLOOR)
 	
 	
@@ -100,3 +100,16 @@ func moveLeft():
 	$Camera2D.set_offset(Vector2(max(-100,res),$Camera2D.get_offset().y))
 	if is_on_floor():
 		anim_switch("Run")
+
+func jump():
+	if is_on_floor():
+		velocity.y = -JUMP_POWER
+		anim_switch("Jump")
+
+func fallingDown():
+	anim_switch("Down")
+
+
+#func _on_Anim_animation_finished(anim_name):
+#	$Stand.disabled = true
+	

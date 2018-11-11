@@ -25,7 +25,9 @@ func _physics_process(delta):
 	
 	if is_on_wall():
 		direction = direction * -1
+		$Animation/AreaDeVision/CollisionShape2D.position.x *= -1
 		
+
 func attack():
 	velocity.x = 0
 	$Animation.play("Attack")
