@@ -116,8 +116,9 @@ extents = Vector2( 70.4356, 27.5811 )
 custom_solver_bias = 0.0
 extents = Vector2( 5.08258, 13.351 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Skeleton" type="KinematicBody2D" index="0"]
 
+editor/display_folded = true
 input_pickable = true
 collision_layer = 1
 collision_mask = 1
@@ -129,7 +130,7 @@ _sections_unfolded = [ "Pickable", "Transform" ]
 
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 6
+frame = 7
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -171,10 +172,10 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( -4.74336, 4.21632 )
 shape = SubResource( 4 )
 
-[node name="Timer" type="Timer" parent="." index="2"]
+[node name="timer" type="Timer" parent="." index="2"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 2.0
 one_shot = false
 autostart = false
 
@@ -185,5 +186,7 @@ autostart = false
 [connection signal="body_entered" from="Animation/AreaDeVision" to="." method="_on_AreaDeVision_body_entered"]
 
 [connection signal="body_exited" from="Animation/AreaDeVision" to="." method="_on_AreaDeVision_body_exited"]
+
+[connection signal="timeout" from="timer" to="." method="_on_Timer_timeout"]
 
 

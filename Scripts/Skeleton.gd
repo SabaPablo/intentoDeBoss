@@ -7,7 +7,10 @@ const FLOOR = Vector2(0,-1)
 var velocity = Vector2()
 var modoDiablo = false
 var direction = 1
+var wait = false
 var modeAttack = false
+var exclamations = preload("res://Efects/expresions/buble_expresion.tscn")
+
 
 func _ready():
 	pass
@@ -16,10 +19,13 @@ func _physics_process(delta):
 	if modeAttack:
 		attack()
 	else:
-		if(modoDiablo):
-			evil_movement_loop();
+		if(wait):
+			velocity.x = 0
 		else:
-			relax_movement_loop();
+			if(modoDiablo):
+				evil_movement_loop();
+			else:
+				relax_movement_loop();
 	
 	velocity = move_and_slide(velocity,FLOOR)
 	
@@ -57,13 +63,26 @@ func _on_AreaDeVision_body_entered(body):
 	if body.get("TYPE") == "PLAYER":
 		print("muereee")
 		$Animation.play("React")
-		$Animation.connect("animation_finished",self,"destroy")
+		wait = true
+		$timer.start()
+		get_exclamation(self.position.x,self.position.y,"exclamation")
 		modo_diablo()
+
+func get_exclamation(x,y,expres):
+	var exclamation = exclamations.instance()
+	exclamation.set_position(Vector2(x ,y-15))
+	get_parent().add_child(exclamation)
+	exclamation.get_node("anim").play(expres)
 
 func _on_AreaDeVision_body_exited(body):
 	if body.get("TYPE") == "PLAYER":
 		modo_lazy()
+		wait = true
+		$timer.start()
+		get_exclamation(self.position.x,self.position.y,"quest")
+		$timer.start()
 		print("Se fue?")
+		$Animation.play("React")
 
 func modo_lazy():
 	modoDiablo = false
@@ -79,3 +98,7 @@ func _on_AttackeZone_body_entered(body):
 func _on_AttackeZone_body_exited(body):
 	if body.get("TYPE") == "PLAYER":
 		modeAttack = false
+
+
+func _on_Timer_timeout():
+	wait = false
