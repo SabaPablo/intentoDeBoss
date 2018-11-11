@@ -81,7 +81,6 @@ _sections_unfolded = [ "Pickable", "Transform" ]
 
 frames = SubResource( 1 )
 animation = "Walk"
-frame = 3
 playing = true
 _sections_unfolded = [ "Transform" ]
 

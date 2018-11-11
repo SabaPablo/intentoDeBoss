@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Images/Player.png" type="Texture" id=2]
@@ -314,7 +314,12 @@ tracks/0/keys = {
 "values": [ 81, 82, 83, 84 ]
 }
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[sub_resource type="RectangleShape2D" id=19]
+
+custom_solver_bias = 0.0
+extents = Vector2( 29.5384, 30.6286 )
+
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -327,7 +332,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 7
-frame = 23
+frame = 68
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="Stand" type="CollisionShape2D" parent="." index="1"]
@@ -396,6 +401,24 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing" ]
 
+[node name="Area2D" type="Area2D" parent="." index="5"]
+
+position = Vector2( -0.260016, 2.38421 )
+scale = Vector2( 0.33305, 0.469522 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 19 )
+
 [connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
 

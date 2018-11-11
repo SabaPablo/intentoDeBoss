@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Scripts/Skeleton.gd" type="Script" id=1]
 [ext_resource path="res://Images/Skeleton/Sprite Sheets/Idle/hit-0.png" type="Texture" id=2]
@@ -116,6 +116,11 @@ extents = Vector2( 70.4356, 27.5811 )
 custom_solver_bias = 0.0
 extents = Vector2( 5.08258, 13.351 )
 
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
 [node name="Skeleton" type="KinematicBody2D" index="0"]
 
 input_pickable = true
@@ -128,13 +133,14 @@ _sections_unfolded = [ "Pickable", "Transform" ]
 [node name="Animation" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "Idle"
+animation = "Hit"
 frame = 3
 playing = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="AttackeZone" type="Area2D" parent="Animation" index="0"]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -151,6 +157,7 @@ shape = SubResource( 2 )
 
 [node name="AreaDeVision" type="Area2D" parent="Animation" index="1"]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -168,6 +175,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
+visible = false
 position = Vector2( -4.74336, 4.21632 )
 shape = SubResource( 4 )
 
@@ -178,6 +186,24 @@ wait_time = 2.0
 one_shot = false
 autostart = false
 
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+position = Vector2( -4.23807, 3.76991 )
+scale = Vector2( 0.264615, 0.428859 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( -4.74014, 0.616942 )
+scale = Vector2( 2.8377, 3.14768 )
+shape = SubResource( 5 )
+
 [connection signal="body_entered" from="Animation/AttackeZone" to="." method="_on_AttackeZone_body_entered"]
 
 [connection signal="body_exited" from="Animation/AttackeZone" to="." method="_on_AttackeZone_body_exited"]
@@ -187,5 +213,7 @@ autostart = false
 [connection signal="body_exited" from="Animation/AreaDeVision" to="." method="_on_AreaDeVision_body_exited"]
 
 [connection signal="timeout" from="timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
 

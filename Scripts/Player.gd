@@ -10,7 +10,7 @@ const FRICTION_IDLE = 8
 const FRICTION_DOWN_SLASH = 2
 const TYPE = "PLAYER"
 var friction = 6
-
+var lives = 3
 var velocity = Vector2()
 var switch_anim = ""
 
@@ -21,7 +21,6 @@ func _physics_process(delta):
 	movement_loop(delta)
 	animation_loop(delta)
 	deslice_wall_loop()
-	print("wall: " + str(is_on_wall()) + " floor: " + str(is_on_floor()))
 	velocity = move_and_slide(velocity, FLOOR)
 
 func anim_switch(newanim):
@@ -112,7 +111,16 @@ func deslice_wall_loop():
 		anim_switch("SlashWall")
 		velocity.y = max(velocity.y, 3)
 	
+func hurt():
+	if lives != 0:
+		lives -= 1
+		print("auch")
+		anim_switch("Tired")
+	else:
+		dead()
 
-#func _on_Anim_animation_finished(anim_name):
-#	$Stand.disabled = true
+func dead():
+	queue_free()
 	
+func _on_Area2D_body_entered(body):
+	body.hurt()

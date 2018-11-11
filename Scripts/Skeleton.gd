@@ -10,7 +10,7 @@ var direction = 1
 var wait = false
 var modeAttack = false
 var exclamations = preload("res://Efects/expresions/buble_expresion.tscn")
-
+var fireDead = preload("res://Efects/fire.tscn")
 
 func _ready():
 	pass
@@ -103,3 +103,17 @@ func _on_AttackeZone_body_exited(body):
 
 func _on_Timer_timeout():
 	wait = false
+
+
+func dead():
+	var dead = fireDead.instance()
+	dead.position = $Animation.global_position
+	queue_free()
+	get_parent().add_child(dead)
+
+func hurt():
+	print("iuuuuuuu")
+	$Animation.play("Hit")
+	
+func _on_Area2D_body_entered(body):
+	body.hurt()
