@@ -118,7 +118,6 @@ extents = Vector2( 5.08258, 13.351 )
 
 [node name="Skeleton" type="KinematicBody2D" index="0"]
 
-editor/display_folded = true
 input_pickable = true
 collision_layer = 1
 collision_mask = 1
