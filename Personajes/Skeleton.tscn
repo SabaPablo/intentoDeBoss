@@ -104,7 +104,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 7.71779, 14.9322 )
+extents = Vector2( 13.358, 14.9322 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
@@ -116,7 +116,7 @@ extents = Vector2( 70.4356, 27.5811 )
 custom_solver_bias = 0.0
 extents = Vector2( 5.08258, 13.351 )
 
-[node name="Skeleton" type="KinematicBody2D" index="0"]
+[node name="KinematicBody2D" type="KinematicBody2D" index="0"]
 
 input_pickable = true
 collision_layer = 1
@@ -129,13 +129,12 @@ _sections_unfolded = [ "Pickable", "Transform" ]
 
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 7
+frame = 8
 playing = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="AttackeZone" type="Area2D" parent="Animation" index="0"]
 
-position = Vector2( 41.8997, 13.703 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -143,11 +142,13 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/AttackeZone" index="0"]
 
-position = Vector2( -31.6224, -10.0138 )
+position = Vector2( 4.64392, 2.86453 )
 shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="AreaDeVision" type="Area2D" parent="Animation" index="1"]
 
@@ -171,10 +172,10 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( -4.74336, 4.21632 )
 shape = SubResource( 4 )
 
-[node name="timer" type="Timer" parent="." index="2"]
+[node name="Timer" type="Timer" parent="." index="2"]
 
 process_mode = 1
-wait_time = 2.0
+wait_time = 1.0
 one_shot = false
 autostart = false
 
@@ -186,6 +187,6 @@ autostart = false
 
 [connection signal="body_exited" from="Animation/AreaDeVision" to="." method="_on_AreaDeVision_body_exited"]
 
-[connection signal="timeout" from="timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

@@ -32,6 +32,7 @@ func _physics_process(delta):
 	if is_on_wall():
 		direction = direction * -1
 		$Animation/AreaDeVision/CollisionShape2D.position.x *= -1
+		$Animation/AttackeZone/CollisionShape2D.position.x *= -1
 		
 
 func attack():
@@ -64,7 +65,7 @@ func _on_AreaDeVision_body_entered(body):
 		print("muereee")
 		$Animation.play("React")
 		wait = true
-		$timer.start()
+		$Timer.start()
 		get_exclamation(self.position.x,self.position.y,"exclamation")
 		modo_diablo()
 
@@ -78,9 +79,9 @@ func _on_AreaDeVision_body_exited(body):
 	if body.get("TYPE") == "PLAYER":
 		modo_lazy()
 		wait = true
-		$timer.start()
+		$Timer.start()
 		get_exclamation(self.position.x,self.position.y,"quest")
-		$timer.start()
+		$Timer.start()
 		print("Se fue?")
 		$Animation.play("React")
 
