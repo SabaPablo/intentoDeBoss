@@ -20,6 +20,9 @@ func _ready():
 func _physics_process(delta):
 	movement_loop(delta)
 	animation_loop(delta)
+	deslice_wall_loop()
+	print("wall: " + str(is_on_wall()) + " floor: " + str(is_on_floor()))
+	velocity = move_and_slide(velocity, FLOOR)
 
 func anim_switch(newanim):
 	switch_anim = newanim
@@ -35,7 +38,7 @@ func movement_loop(delta):
 	var RIGHT 	= Input.is_action_pressed("ui_right")
 	var UP	 	= Input.is_action_pressed("ui_up")
 	var DOWN 	= Input.is_action_pressed("ui_down")
-	var PUNCH 	= Input.is_action_pressed("ui_select")
+	var PUNCH 	= Input.is_action_pressed("a")
 
 	if RIGHT:
 		moveRigth()
@@ -71,16 +74,11 @@ func movement_loop(delta):
 			friction = FRICTION_DOWN_SLASH
 			anim_switch("Slash")
 			$Stand.disabled = true
-			
-			
-
 		elif is_on_floor() && velocity.x == 0:
 			anim_switch("Idle_down")
-			
-	
 		
 	velocity.y += GRAVITY
-	velocity = move_and_slide(velocity, FLOOR)
+	
 	
 	
 func moveRigth():
@@ -109,6 +107,11 @@ func jump():
 func fallingDown():
 	anim_switch("Down")
 
+func deslice_wall_loop():
+	if is_on_wall() && !is_on_floor():
+		anim_switch("SlashWall")
+		velocity.y = max(velocity.y, 3)
+	
 
 #func _on_Anim_animation_finished(anim_name):
 #	$Stand.disabled = true
