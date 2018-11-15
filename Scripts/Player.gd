@@ -11,18 +11,21 @@ const FRICTION_DOWN_SLASH = 2
 const TYPE = "PLAYER"
 var friction = 6
 var lives = 3
+var live = "live" 
 var velocity = Vector2()
 var switch_anim = ""
 
-func _ready():
-	pass
-
 func _physics_process(delta):
-	movement_loop(delta)
-	animation_loop(delta)
-	deslice_wall_loop()
-	velocity = move_and_slide(velocity, FLOOR)
-
+	if live == "live":
+		movement_loop(delta)
+		animation_loop(delta)
+		deslice_wall_loop()
+		velocity = move_and_slide(velocity, FLOOR)
+	else:
+		dead()
+		
+		
+		
 func anim_switch(newanim):
 	switch_anim = newanim
 
@@ -115,12 +118,21 @@ func hurt():
 	if lives != 0:
 		lives -= 1
 		print("auch")
-		anim_switch("Tired")
 	else:
-		dead()
+		live = "dead"
 
 func dead():
-	queue_free()
+	anim_switch("Tired")
+	$Anim.play("Tired")
+	#if animation_finished ("Tired"):
+	#	anim_switch("Dead")
+	#	$Anim.play("Dead")
+	
+	
 	
 func _on_Area2D_body_entered(body):
 	body.hurt()
+
+func _on_Anim_animation_finished(anim_name):
+	if (anim_name == "Tired"):
+		queue_free()

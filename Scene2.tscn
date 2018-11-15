@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://TileSets/DirtAutoTileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Personajes/Player.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D" index="0"]
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+scale = Vector2( 0.25, 0.25 )
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 1, 0, 5, 131069, 0, 196608, 131070, 0, 196609, 131071, 0, 196609, 65536, 0, 196609, 65537, 0, 196611, 65538, 0, 196609, 65539, 0, 196609, 65540, 0, 196609, 65541, 0, 196610 )
+_sections_unfolded = [ "Cell", "Transform" ]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+
+

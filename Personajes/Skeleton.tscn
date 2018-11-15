@@ -121,7 +121,7 @@ extents = Vector2( 5.08258, 13.351 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Skeleton" type="KinematicBody2D" index="0"]
+[node name="Skeleton" type="KinematicBody2D"]
 
 input_pickable = true
 collision_layer = 1
@@ -134,7 +134,7 @@ _sections_unfolded = [ "Pickable", "Transform" ]
 
 frames = SubResource( 1 )
 animation = "Hit"
-frame = 3
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform" ]
 
