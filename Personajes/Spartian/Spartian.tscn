@@ -106,7 +106,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 2 )
 animation = "Idle"
-playing = true
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
@@ -148,6 +148,8 @@ audio_bus_name = "Master"
 
 position = Vector2( 9, -2 )
 shape = SubResource( 4 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 
 [connection signal="body_entered" from="RunArea" to="." method="_on_Area2D_body_entered"]
 

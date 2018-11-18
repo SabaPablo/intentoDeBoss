@@ -45,6 +45,7 @@ func relax_movement_loop():
 func attack():
 	velocity.x = 0
 	$AnimatedSprite.play("Atack")
+	
 
 func hurt():
 	pass
@@ -68,8 +69,13 @@ func jump():
 func _on_AttackArea_body_entered(body):
 	if body.name == "Player":
 		modeAttack = true
-		print("died died died my darling")
+		
 
 func _on_AttackArea_body_exited(body):
 	modeAttack = false
-	print("oh darling")
+	
+
+func _on_AnimatedSprite_animation_finished():
+	if modeAttack == true:
+		get_parent().get_node("Player").hurt()
+		
