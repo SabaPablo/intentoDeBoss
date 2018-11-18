@@ -5,11 +5,13 @@ const INITIAL_SPEED = 20
 const SPEED_ANGRY = 35 
 const FLOOR = Vector2(0,-1)
 const SPEED = INITIAL_SPEED
+const JUMP = 380
 
 var velocity = Vector2()
 var direction = 1
 var modeAttack = false
 var wait = false
+var modeAlert = false
 
 
 	
@@ -25,8 +27,11 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity,FLOOR)
 	
 	if is_on_wall():
-		direction = direction * -1
-	
+		if !modeAlert:
+			direction = direction * -1
+			$Area2D/CollisionShape2D.position.x *= -1
+		else:
+			jump()
 	
 func relax_movement_loop():
 	velocity.x = SPEED * direction
@@ -43,19 +48,23 @@ func attack():
 	velocity.x = 0
 	$AnimatedSprite.play("Atack")
 
-
-	
 func hurt():
 	pass
-	
-	
-
 
 func _on_Area2D_body_entered(body):
-	if body.name == "Player" :
+	if body.name == "Player" && !modeAlert:
 		SPEED *= 2
-
+		modeAlert = true
+		
+		
 
 func _on_Area2D_body_exited(body):
-	if body.name == "Player" :
-		SPEED *= INITIAL_SPEED
+	if body.name == "Player":
+		SPEED = INITIAL_SPEED
+		modeAlert = false
+		
+		
+func jump():
+	velocity.y = -JUMP
+	print(modeAlert)
+	
