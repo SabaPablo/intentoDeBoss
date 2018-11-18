@@ -11,7 +11,6 @@ const JUMP = 300
 var velocity = Vector2()
 var direction = 1
 var modeAttack = false
-var wait = false
 var modeAlert = false
 
 
@@ -20,10 +19,7 @@ func _physics_process(delta):
 	if modeAttack:
 		attack()
 	else:
-		if(wait):
-			velocity.x = 0
-		else:
-			relax_movement_loop()
+		relax_movement_loop()
 			
 	velocity = move_and_slide(velocity,FLOOR)
 	
@@ -31,6 +27,7 @@ func _physics_process(delta):
 		if !modeAlert:
 			direction = direction * -1
 			$RunArea/CollisionShape2D.position.x *= -1
+			$AttackArea/CollisionShape2D.position.x *= -1
 		else:
 			jump()
 	
@@ -67,5 +64,12 @@ func _on_Area2D_body_exited(body):
 		
 func jump():
 	velocity.y = -JUMP
-	print(modeAlert)
 	
+func _on_AttackArea_body_entered(body):
+	if body.name == "Player":
+		modeAttack = true
+		print("died died died my darling")
+
+func _on_AttackArea_body_exited(body):
+	modeAttack = false
+	print("oh darling")

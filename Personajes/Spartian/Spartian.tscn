@@ -106,7 +106,6 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 2 )
 animation = "Idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -153,5 +152,9 @@ shape = SubResource( 4 )
 [connection signal="body_entered" from="RunArea" to="." method="_on_Area2D_body_entered"]
 
 [connection signal="body_exited" from="RunArea" to="." method="_on_Area2D_body_exited"]
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
+
+[connection signal="body_exited" from="AttackArea" to="." method="_on_AttackArea_body_exited"]
 
 
