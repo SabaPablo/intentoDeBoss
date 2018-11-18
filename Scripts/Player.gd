@@ -19,7 +19,7 @@ func _physics_process(delta):
 	if live == "live":
 		movement_loop(delta)
 		animation_loop(delta)
-		deslice_wall_loop()
+		#deslice_wall_loop()
 		velocity = move_and_slide(velocity, FLOOR)
 	else:
 		dead()
@@ -109,10 +109,10 @@ func jump():
 func fallingDown():
 	anim_switch("Down")
 
-func deslice_wall_loop():
-	if is_on_wall() && !is_on_floor():
-		anim_switch("SlashWall")
-		velocity.y = max(velocity.y, 3)
+#func deslice_wall_loop():
+#	if is_on_wall() && !is_on_floor():
+#		anim_switch("SlashWall")
+#		velocity.y = max(velocity.y, 3)
 	
 func hurt():
 	if lives != 0:
