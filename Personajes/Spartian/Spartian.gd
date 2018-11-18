@@ -5,7 +5,8 @@ const INITIAL_SPEED = 20
 const SPEED_ANGRY = 35 
 const FLOOR = Vector2(0,-1)
 const SPEED = INITIAL_SPEED
-const JUMP = 380
+const JUMP = 300
+
 
 var velocity = Vector2()
 var direction = 1
@@ -29,7 +30,7 @@ func _physics_process(delta):
 	if is_on_wall():
 		if !modeAlert:
 			direction = direction * -1
-			$Area2D/CollisionShape2D.position.x *= -1
+			$RunArea/CollisionShape2D.position.x *= -1
 		else:
 			jump()
 	
@@ -53,7 +54,7 @@ func hurt():
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player" && !modeAlert:
-		SPEED *= 2
+		SPEED *= 7.5
 		modeAlert = true
 		
 		
