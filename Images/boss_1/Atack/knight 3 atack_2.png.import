@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/knight 3 idle.png-481ee2ed77873ba1dde41dd9181f91fa.stex"
+path="res://.import/knight 3 atack_2.png-b7e356ac8d6e46831ed264f2ee9f647a.stex"
 
 [deps]
 
-source_file="res://Images/boss_1/knight 3 idle.png"
-dest_files=[ "res://.import/knight 3 idle.png-481ee2ed77873ba1dde41dd9181f91fa.stex" ]
+source_file="res://Images/boss_1/Atack/knight 3 atack_2.png"
+dest_files=[ "res://.import/knight 3 atack_2.png-b7e356ac8d6e46831ed264f2ee9f647a.stex" ]
 
 [params]
 

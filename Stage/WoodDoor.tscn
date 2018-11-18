@@ -28,7 +28,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 22.1211, 35.9684 )
 
-[node name="ChangeScene" type="Node2D"]
+[node name="ChangeScene" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 next_lvl = null
@@ -52,6 +52,8 @@ blend_times = [  ]
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
 
+position = Vector2( 21.2228, 0 )
+scale = Vector2( 0.336788, 1 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

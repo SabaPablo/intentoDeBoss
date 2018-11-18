@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/knight 3 block.png-3adfc1a0bcb873e1ca10a4048dafffb3.stex"
+path="res://.import/knight 3 improved slash animation.png-f02ab7d9dd57c9eeb97127d9f3d2efbf.stex"
 
 [deps]
 
-source_file="res://Images/boss_1/knight 3 block.png"
-dest_files=[ "res://.import/knight 3 block.png-3adfc1a0bcb873e1ca10a4048dafffb3.stex" ]
+source_file="res://Images/boss_1/Atack/knight 3 improved slash animation.png"
+dest_files=[ "res://.import/knight 3 improved slash animation.png-f02ab7d9dd57c9eeb97127d9f3d2efbf.stex" ]
 
 [params]
 

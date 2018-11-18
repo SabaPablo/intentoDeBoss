@@ -117,7 +117,6 @@ func fallingDown():
 func hurt():
 	if lives != 0:
 		lives -= 1
-		print("auch")
 	else:
 		live = "dead"
 
