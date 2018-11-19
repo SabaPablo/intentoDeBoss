@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://TileSets/DirtAutoTileSet.tres" type="TileSet" id=1]
-[ext_resource path="res://Personajes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TileMap.gd" type="Script" id=2]
+[ext_resource path="res://Personajes/Skeleton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Personajes/Player.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -24,9 +26,16 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 1, 0, 5, 131069, 0, 196608, 131070, 0, 196609, 131071, 0, 196609, 65536, 0, 196609, 65537, 0, 196611, 65538, 0, 196609, 65539, 0, 196609, 65540, 0, 196609, 65541, 0, 196610 )
-_sections_unfolded = [ "Cell", "Transform" ]
+tile_data = PoolIntArray( -2, 0, 196613, 65533, 0, 5, 65535, 0, 1, 0, 0, 65536, 1, 0, 65536, 2, 0, 2, 6, 0, 5, 131069, 0, 65542, 131070, 0, 196609, 131071, 0, 65544, 65536, 0, 131072, 65537, 0, 131072, 65538, 0, 65545, 65542, 0, 65541, 131074, 0, 131075, 131075, 0, 196609, 131076, 0, 7, 131078, 0, 65541, 196610, 0, 65541, 196612, 0, 65542, 196613, 0, 196609, 196614, 0, 65543, 327677, 0, 196608, 327678, 0, 196609, 327679, 0, 196609, 262144, 0, 196609, 262145, 0, 196609, 262146, 0, 196611, 262147, 0, 196610 )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Skeleton" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( -4.98277, -17.3475 )
+
+[node name="Player" parent="." index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 21.456, 45.8932 )
 
 

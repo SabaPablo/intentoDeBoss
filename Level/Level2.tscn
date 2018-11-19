@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://TileSets/DirtAutoTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Level/TileMap.gd" type="Script" id=2]
 [ext_resource path="res://Personajes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Personajes/Spartian/Spartian.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Personajes/Skeleton.tscn" type="PackedScene" id=5]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -34,8 +35,38 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( -33.2976, -33.8973 )
 
-[node name="KinematicBody2D" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Spartian" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 218.323, 13.2317 )
+
+[node name="Skeletons" type="Node2D" parent="." index="3"]
+
+[node name="Skeleton" parent="Skeletons" index="0" instance=ExtResource( 5 )]
+
+position = Vector2( 526.109, 298.964 )
+
+[node name="Skeleton2" parent="Skeletons" index="1" instance=ExtResource( 5 )]
+
+position = Vector2( 945.326, 357.42 )
+
+[node name="Skeleton3" parent="Skeletons" index="2" instance=ExtResource( 5 )]
+
+position = Vector2( 778.308, 357.42 )
+
+[node name="Skeleton4" parent="Skeletons" index="3" instance=ExtResource( 5 )]
+
+position = Vector2( 567.864, 170.359 )
+
+[node name="Skeleton5" parent="Skeletons" index="4" instance=ExtResource( 5 )]
+
+position = Vector2( 277.515, 111.632 )
+
+[node name="Skeleton6" parent="Skeletons" index="5" instance=ExtResource( 5 )]
+
+position = Vector2( 293.953, -66.8075 )
+
+[node name="Skeleton7" parent="Skeletons" index="6" instance=ExtResource( 5 )]
+
+position = Vector2( 848.456, 61.797 )
 
 

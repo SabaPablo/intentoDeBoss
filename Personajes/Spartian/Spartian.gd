@@ -13,7 +13,6 @@ var direction = 1
 var modeAttack = false
 var modeAlert = false
 
-
 	
 func _physics_process(delta):
 	if modeAttack:
@@ -48,7 +47,7 @@ func attack():
 	
 
 func hurt():
-	pass
+	$AnimatedSprite.play("Hurt")
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player" && !modeAlert:

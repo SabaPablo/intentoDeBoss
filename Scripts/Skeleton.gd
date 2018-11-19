@@ -28,7 +28,7 @@ func _physics_process(delta):
 				relax_movement_loop();
 	
 	velocity = move_and_slide(velocity,FLOOR)
-	
+	dont_fall()
 	if is_on_wall():
 		direction = direction * -1
 		$Animation/AreaDeVision/CollisionShape2D.position.x *= -1
@@ -112,8 +112,16 @@ func dead():
 	get_parent().add_child(dead)
 
 func hurt():
-	print("iuuuuuuu")
 	$Animation.play("Hit")
 	
 func _on_Area2D_body_entered(body):
 	body.hurt()
+	
+func dont_fall():
+	print($RayCast2D.get_collider())
+	print($RayCast2D.get_collider() == null )
+	if $RayCast2D.get_collider() == null:
+		print("la concha de tu hermana puto")
+		direction = direction * -1
+		$Animation/AreaDeVision/CollisionShape2D.position.x *= -1
+		$Animation/AttackeZone/CollisionShape2D.position.x *= -1

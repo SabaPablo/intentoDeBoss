@@ -129,9 +129,13 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pickable", "Transform" ]
+__meta__ = {
+"_edit_horizontal_guides_": [ 17.5132 ]
+}
 
 [node name="Animation" type="AnimatedSprite" parent="." index="0"]
 
+editor/display_folded = true
 frames = SubResource( 1 )
 animation = "Hit"
 frame = 1
@@ -168,6 +172,7 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/AreaDeVision" index="0"]
 
+visible = false
 position = Vector2( 64.0326, -3.91496 )
 scale = Vector2( 1, 0.794428 )
 shape = SubResource( 3 )
@@ -175,7 +180,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-visible = false
 position = Vector2( -4.74336, 4.21632 )
 shape = SubResource( 4 )
 
@@ -188,6 +192,7 @@ autostart = false
 
 [node name="Area2D" type="Area2D" parent="." index="3"]
 
+editor/display_folded = true
 position = Vector2( -4.23807, 3.76991 )
 scale = Vector2( 0.264615, 0.428859 )
 input_pickable = true
@@ -203,6 +208,14 @@ audio_bus_name = "Master"
 position = Vector2( -4.74014, 0.616942 )
 scale = Vector2( 2.8377, 3.14768 )
 shape = SubResource( 5 )
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="4"]
+
+position = Vector2( 13.8347, 13.309 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 1 )
+collision_mask = 1
 
 [connection signal="body_entered" from="Animation/AttackeZone" to="." method="_on_AttackeZone_body_entered"]
 
