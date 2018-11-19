@@ -93,7 +93,9 @@ height = 61.3254
 custom_solver_bias = 0.0
 extents = Vector2( 12.8602, 11.7218 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Spartian" type="KinematicBody2D" groups=[
+"Enemies",
+]]
 
 input_pickable = false
 collision_layer = 1

@@ -12,13 +12,17 @@ var velocity = Vector2()
 var direction = 1
 var modeAttack = false
 var modeAlert = false
+var modeHurt = false
 
 	
 func _physics_process(delta):
-	if modeAttack:
-		attack()
+	if modeHurt:
+		$AnimatedSprite.play("Hurt")
 	else:
-		relax_movement_loop()
+		if modeAttack:
+			attack()
+		else:
+			relax_movement_loop()
 			
 	velocity = move_and_slide(velocity,FLOOR)
 	
@@ -47,7 +51,8 @@ func attack():
 	
 
 func hurt():
-	$AnimatedSprite.play("Hurt")
+	modeHurt = true
+	
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player" && !modeAlert:
@@ -77,4 +82,6 @@ func _on_AttackArea_body_exited(body):
 func _on_AnimatedSprite_animation_finished():
 	if modeAttack == true:
 		get_parent().get_node("Player").hurt()
+	elif modeHurt == true:
+		modeHurt = false
 		
