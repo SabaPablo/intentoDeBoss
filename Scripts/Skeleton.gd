@@ -115,13 +115,11 @@ func hurt():
 	$Animation.play("Hit")
 	
 func _on_Area2D_body_entered(body):
-	body.hurt()
+	if body.name == "Player":
+		body.hurt()
 	
 func dont_fall():
-	print($RayCast2D.get_collider())
-	print($RayCast2D.get_collider() == null )
 	if $RayCast2D.get_collider() == null:
-		print("la concha de tu hermana puto")
 		direction = direction * -1
 		$Animation/AreaDeVision/CollisionShape2D.position.x *= -1
 		$Animation/AttackeZone/CollisionShape2D.position.x *= -1

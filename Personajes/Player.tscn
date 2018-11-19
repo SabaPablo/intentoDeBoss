@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Images/Player.png" type="Texture" id=2]
@@ -326,6 +326,11 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 29.5384, 30.6286 )
 
+[sub_resource type="CircleShape2D" id=21]
+
+custom_solver_bias = 0.0
+radius = 16.4644
+
 [node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
@@ -339,16 +344,19 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 7
+frame = 44
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="Stand" type="CollisionShape2D" parent="." index="1"]
 
+visible = false
 position = Vector2( -0.17482, 2.62237 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Layed" type="CollisionShape2D" parent="." index="2"]
 
+visible = false
 position = Vector2( -0.17482, 13.4998 )
 scale = Vector2( 1, 0.25 )
 shape = SubResource( 1 )
@@ -383,6 +391,7 @@ blend_times = [  ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 
+visible = false
 offset = Vector2( 100, -50 )
 anchor_mode = 1
 rotating = false
@@ -410,6 +419,7 @@ _sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing" ]
 
 [node name="Area2D" type="Area2D" parent="." index="5"]
 
+visible = false
 position = Vector2( -0.260016, 2.38421 )
 scale = Vector2( 0.33305, 0.469522 )
 input_pickable = true
@@ -422,10 +432,29 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
+visible = false
 shape = SubResource( 20 )
+
+[node name="Attack_Area" type="Area2D" parent="." index="6"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area" index="0"]
+
+position = Vector2( 8.30944, -2.80641 )
+shape = SubResource( 21 )
+disabled = true
 
 [connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[connection signal="body_entered" from="Attack_Area" to="." method="_on_Attack_Area_body_entered"]
 
 

@@ -121,7 +121,9 @@ extents = Vector2( 5.08258, 13.351 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Skeleton" type="KinematicBody2D"]
+[node name="Skeleton" type="KinematicBody2D" groups=[
+"Enemies",
+]]
 
 input_pickable = true
 collision_layer = 1
@@ -133,12 +135,21 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 17.5132 ]
 }
 
-[node name="Animation" type="AnimatedSprite" parent="." index="0"]
+[node name="RayCast2D" type="RayCast2D" parent="." index="0"]
+
+position = Vector2( 0.834715, 16.309 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 5 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="Animation" type="AnimatedSprite" parent="." index="1"]
 
 editor/display_folded = true
 frames = SubResource( 1 )
 animation = "Hit"
-frame = 1
+frame = 2
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -178,19 +189,19 @@ scale = Vector2( 1, 0.794428 )
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
 position = Vector2( -4.74336, 4.21632 )
 shape = SubResource( 4 )
 
-[node name="timer" type="Timer" parent="." index="2"]
+[node name="timer" type="Timer" parent="." index="3"]
 
 process_mode = 1
 wait_time = 2.0
 one_shot = false
 autostart = false
 
-[node name="Area2D" type="Area2D" parent="." index="3"]
+[node name="Area2D" type="Area2D" parent="." index="4"]
 
 editor/display_folded = true
 position = Vector2( -4.23807, 3.76991 )
@@ -208,14 +219,6 @@ audio_bus_name = "Master"
 position = Vector2( -4.74014, 0.616942 )
 scale = Vector2( 2.8377, 3.14768 )
 shape = SubResource( 5 )
-
-[node name="RayCast2D" type="RayCast2D" parent="." index="4"]
-
-position = Vector2( 13.8347, 13.309 )
-enabled = true
-exclude_parent = true
-cast_to = Vector2( 0, 1 )
-collision_mask = 1
 
 [connection signal="body_entered" from="Animation/AttackeZone" to="." method="_on_AttackeZone_body_entered"]
 

@@ -9,22 +9,26 @@ const VELOCITY_CAMERA_H = 2
 const FRICTION_IDLE = 8
 const FRICTION_DOWN_SLASH = 2
 const TYPE = "PLAYER"
+
 var friction = 6
 var lives = 3
 var live = "live" 
+var hurtMode = false
 var velocity = Vector2()
 var switch_anim = ""
+var start_anim = false
 
 func _physics_process(delta):
-	if live == "live":
-		movement_loop(delta)
-		animation_loop(delta)
-		#deslice_wall_loop()
-		velocity = move_and_slide(velocity, FLOOR)
+	if hurtMode:
+		animation_loop("Tired")
 	else:
-		dead()
-		
-		
+		if live == "live":
+			movement_loop(delta)
+			animation_loop(delta)
+			velocity = move_and_slide(velocity, FLOOR)
+		else:
+			dead()
+	
 		
 func anim_switch(newanim):
 	switch_anim = newanim
@@ -32,9 +36,9 @@ func anim_switch(newanim):
 func animation_loop(newAnim):
 	if $Anim.current_animation != switch_anim:
 		$Anim.play(switch_anim)
-
-
-
+	
+	
+	
 func movement_loop(delta):
 	var LEFT 	= Input.is_action_pressed("ui_left")
 	var RIGHT 	= Input.is_action_pressed("ui_right")
@@ -64,6 +68,7 @@ func movement_loop(delta):
 
 				#ataque
 				if PUNCH:
+					$Attack_Area/CollisionShape2D.set_disabled(true) 
 					anim_switch("Atack1")
 	friction = FRICTION_IDLE
 	if UP:
@@ -80,8 +85,6 @@ func movement_loop(delta):
 			anim_switch("Idle_down")
 		
 	velocity.y += GRAVITY
-	
-	
 	
 func moveRigth():
 	velocity.x += ACCELERATION
@@ -109,11 +112,6 @@ func jump():
 func fallingDown():
 	anim_switch("Down")
 
-#func deslice_wall_loop():
-#	if is_on_wall() && !is_on_floor():
-#		anim_switch("SlashWall")
-#		velocity.y = max(velocity.y, 3)
-	
 func hurt():
 	if lives != 0:
 		lives -= 1
@@ -123,15 +121,20 @@ func hurt():
 func dead():
 	anim_switch("Tired")
 	$Anim.play("Tired")
-	#if animation_finished ("Tired"):
-	#	anim_switch("Dead")
-	#	$Anim.play("Dead")
-	
-	
 	
 func _on_Area2D_body_entered(body):
 	body.hurt()
 
-func _on_Anim_animation_finished(anim_name):
-	if (anim_name == "Tired"):
-		queue_free()
+##NO ENTRA A ESTA SIGNAL 
+func _on_Anim_animation_finished():
+	print("LCDLLAB")
+	start_anim = false
+	#if $Anim.current_animation == "Tired":
+	#	hurtMode = true
+	#	print(hurtMode, "me tocaste el culo")
+	#elif $Anim.current_animation == "Atack": 
+	#	$Attack_Area/CollisionShape2D.set_disabled(false) 
+		
+func _on_Attack_Area_body_entered(body):
+	if body.is_in_group("Enemies"):
+		body.hurt()
