@@ -1,0 +1,149 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://StartMenu.gd" type="Script" id=1]
+[ext_resource path="res://UIs/back.jpg" type="Texture" id=2]
+[ext_resource path="res://Fonts/scribish.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://UIs/warrior.png" type="Texture" id=4]
+[ext_resource path="res://UIs/logo 12c.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 30
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 40
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="StartMenu" type="Control" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+
+[node name="back" type="Sprite" parent="." index="0"]
+
+position = Vector2( 142.577, 89.6206 )
+scale = Vector2( 0.5, 0.4 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="Start" type="Button" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 59.0
+margin_top = 87.0
+margin_right = 240.0
+margin_bottom = 122.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Comenzar"
+flat = false
+align = 1
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Mouse", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+
+[node name="Quit" type="Button" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 61.0
+margin_top = 116.0
+margin_right = 242.0
+margin_bottom = 151.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Salir"
+flat = false
+align = 1
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Mouse", "Rect", "Size Flags", "Theme", "Visibility", "custom_fonts", "custom_styles" ]
+
+[node name="NameGame" type="Label" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 87.0
+margin_top = 18.0
+margin_right = 390.0
+margin_bottom = 95.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.887308, 0.902344, 0.627411, 1 )
+custom_colors/font_color_shadow = Color( 0.0531492, 0.152344, 0.0523682, 1 )
+text = "The Cactus 
+Warrior"
+align = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "custom_colors", "custom_constants", "custom_fonts" ]
+
+[node name="warrior" type="Sprite" parent="." index="4"]
+
+position = Vector2( 250.926, 116.952 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="logo 12c" type="Sprite" parent="." index="5"]
+
+position = Vector2( 9.29548, 170.198 )
+scale = Vector2( 0.008, 0.008 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
+
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
+
+
