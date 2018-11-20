@@ -391,7 +391,7 @@ blend_times = [  ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 
-visible = false
+position = Vector2( 6.75432, 16.7707 )
 offset = Vector2( 100, -50 )
 anchor_mode = 1
 rotating = false
@@ -413,9 +413,9 @@ drag_margin_top = 1.0
 drag_margin_right = 0.2
 drag_margin_bottom = 0.2
 editor_draw_screen = true
-editor_draw_limits = false
+editor_draw_limits = true
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing" ]
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
 [node name="Area2D" type="Area2D" parent="." index="5"]
 
@@ -447,7 +447,7 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area" index="0"]
 
-position = Vector2( 8.30944, -2.80641 )
+position = Vector2( 8.30944, -1.9919 )
 shape = SubResource( 21 )
 disabled = true
 
