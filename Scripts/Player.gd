@@ -32,7 +32,7 @@ func _physics_process(delta):
 	gravity_loop(delta)
 	if hurting:
 		velocity = move_and_slide(knockdir, FLOOR)
-		#hurting=false
+		hurting=false
 	else:
 		velocity = move_and_slide(velocity, FLOOR)
 		

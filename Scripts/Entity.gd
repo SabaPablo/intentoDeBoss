@@ -32,7 +32,6 @@ func damage_loop():
 			queue_free()
 		if TYPE == "PLAYER" && health <= 0:
 			print("me mori")
-			pass
 	for area in $hitbox.get_overlapping_areas():
 		var body = area.get_parent()
 		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE:

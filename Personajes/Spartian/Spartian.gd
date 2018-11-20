@@ -30,7 +30,7 @@ func _physics_process(delta):
 		if !modeAlert:
 			direction = direction * -1
 			$RunArea/CollisionShape2D.position.x *= -1
-			$AttackArea/CollisionShape2D.position.x *= -1
+			$hitbox/CollisionShape2D.position.x *= -1
 		else:
 			jump()
 	
@@ -81,7 +81,9 @@ func _on_AttackArea_body_exited(body):
 
 func _on_AnimatedSprite_animation_finished():
 	if modeAttack == true:
-		get_parent().get_node("Player").hurt()
+		#aca deberia ser dañado
+		print("its my life: ",get_parent().get_node("Player").health)
+		
 	elif modeHurt == true:
 		modeHurt = false
 		

@@ -203,7 +203,6 @@ autostart = false
 
 [node name="hitbox" type="Area2D" parent="." index="4"]
 
-editor/display_folded = true
 position = Vector2( -4.23807, 3.76991 )
 scale = Vector2( 0.264615, 0.428859 )
 input_pickable = true
