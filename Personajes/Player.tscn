@@ -331,7 +331,7 @@ extents = Vector2( 29.5384, 30.6286 )
 custom_solver_bias = 0.0
 radius = 16.4644
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -417,8 +417,9 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing" ]
 
-[node name="Area2D" type="Area2D" parent="." index="5"]
+[node name="hitbox" type="Area2D" parent="." index="5"]
 
+editor/display_folded = true
 visible = false
 position = Vector2( -0.260016, 2.38421 )
 scale = Vector2( 0.33305, 0.469522 )
@@ -430,13 +431,14 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
 
 visible = false
 shape = SubResource( 20 )
 
 [node name="Attack_Area" type="Area2D" parent="." index="6"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -452,8 +454,6 @@ shape = SubResource( 21 )
 disabled = true
 
 [connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
 [connection signal="body_entered" from="Attack_Area" to="." method="_on_Attack_Area_body_entered"]
 

@@ -149,7 +149,7 @@ _sections_unfolded = [ "Transform" ]
 editor/display_folded = true
 frames = SubResource( 1 )
 animation = "Hit"
-frame = 2
+frame = 3
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -201,7 +201,7 @@ wait_time = 2.0
 one_shot = false
 autostart = false
 
-[node name="Area2D" type="Area2D" parent="." index="4"]
+[node name="hitbox" type="Area2D" parent="." index="4"]
 
 editor/display_folded = true
 position = Vector2( -4.23807, 3.76991 )
@@ -214,7 +214,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
 
 position = Vector2( -4.74014, 0.616942 )
 scale = Vector2( 2.8377, 3.14768 )
@@ -230,6 +230,6 @@ shape = SubResource( 5 )
 
 [connection signal="timeout" from="timer" to="." method="_on_Timer_timeout"]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_Area2D_body_entered"]
 
 

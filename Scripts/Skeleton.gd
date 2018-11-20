@@ -3,9 +3,11 @@ extends KinematicBody2D
 const GRAVITY = 10
 const SPEED = 20
 const SPEED_ANGRY = 35 
+const DAMAGE = 10
 const FLOOR = Vector2(0,-1)
 var velocity = Vector2()
 var modoDiablo = false
+const TYPE = "ENEMY"
 var direction = 1
 var wait = false
 var modeAttack = false
@@ -114,9 +116,9 @@ func dead():
 func hurt():
 	$Animation.play("Hit")
 	
-func _on_Area2D_body_entered(body):
-	if body.name == "Player":
-		body.hurt()
+#func _on_Area2D_body_entered(body):
+#	if body.name == "Player":
+#		body.hurt()
 	
 func dont_fall():
 	if $RayCast2D.get_collider() == null:

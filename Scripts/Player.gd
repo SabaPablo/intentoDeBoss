@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://Scripts/Entity.gd"
 
 const SPEED = 150
 const GRAVITY = 15
@@ -19,16 +19,22 @@ var switch_anim = ""
 var start_anim = false
 
 func _physics_process(delta):
+	damage_loop()
 	if hurtMode:
 		animation_loop("Tired")
 	else:
 		if live == "live":
 			movement_loop(delta)
 			animation_loop(delta)
-			velocity = move_and_slide(velocity, FLOOR)
+
 		else:
 			dead()
-	
+	gravity_loop(delta)
+	if hurting:
+		velocity = move_and_slide(knockdir, FLOOR)
+		#hurting=false
+	else:
+		velocity = move_and_slide(velocity, FLOOR)
 		
 func anim_switch(newanim):
 	switch_anim = newanim
@@ -37,7 +43,8 @@ func animation_loop(newAnim):
 	if $Anim.current_animation != switch_anim:
 		$Anim.play(switch_anim)
 	
-	
+func gravity_loop(delta):
+	velocity.y += GRAVITY
 	
 func movement_loop(delta):
 	var LEFT 	= Input.is_action_pressed("ui_left")
@@ -84,7 +91,7 @@ func movement_loop(delta):
 		elif is_on_floor() && velocity.x == 0:
 			anim_switch("Idle_down")
 		
-	velocity.y += GRAVITY
+	
 	
 func moveRigth():
 	velocity.x += ACCELERATION
@@ -112,18 +119,15 @@ func jump():
 func fallingDown():
 	anim_switch("Down")
 
-func hurt():
-	if lives != 0:
-		lives -= 1
-	else:
-		live = "dead"
+#func hurt():
+#	if lives != 0:
+#		lives -= 1
+#	else:
+#		live = "dead"
 
 func dead():
 	anim_switch("Tired")
 	$Anim.play("Tired")
-	
-func _on_Area2D_body_entered(body):
-	body.hurt()
 
 ##NO ENTRA A ESTA SIGNAL 
 func _on_Anim_animation_finished():
@@ -134,6 +138,7 @@ func _on_Anim_animation_finished():
 	#	print(hurtMode, "me tocaste el culo")
 	#elif $Anim.current_animation == "Atack": 
 	#	$Attack_Area/CollisionShape2D.set_disabled(false) 
+		
 		
 func _on_Attack_Area_body_entered(body):
 	if body.is_in_group("Enemies"):
