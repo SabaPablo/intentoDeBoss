@@ -7,8 +7,7 @@ var knockdir = Vector2(0,0)
 var movedir = Vector2(0,0)
 var hurting = false;
 const SPEED = 150
-
-
+var live = "live" 
 func movement_loop():
 	
 	var motion
@@ -16,7 +15,7 @@ func movement_loop():
 		pass
 	else:
 		knockdir.y = -1
-		knockdir = knockdir.normalized() * 50
+		knockdir = knockdir.normalized() * 10
 
 
 func damage_loop():
@@ -25,13 +24,13 @@ func damage_loop():
 		#$Sprite.texture = texture_hurt
 	else:
 		#$Sprite.texture = texture_default
-		print(health)
 		if TYPE == "ENEMY" && health <= 0:
 			#get_parent().add_child(death_animation)
 			#death_animation.global_transform = global_transform
 			queue_free()
 		if TYPE == "PLAYER" && health <= 0:
 			print("me mori")
+			live = "dead"
 	for area in $hitbox.get_overlapping_areas():
 		var body = area.get_parent()
 		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE:

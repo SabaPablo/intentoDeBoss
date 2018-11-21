@@ -10,9 +10,9 @@ extents = Vector2( 7.51722, 14.5595 )
 
 [sub_resource type="Animation" id=2]
 
-length = 0.5
+length = 0.4
 loop = false
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -20,10 +20,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.11, 0.18, 0.25, 0.31, 0.37 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 39, 40, 41, 42, 43, 44, 45, 46, 47, 49 ]
+"update": 0,
+"values": [ 0, 40, 41, 42, 43, 44, 45, 46, 47, 49 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -293,7 +293,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
@@ -331,7 +331,7 @@ extents = Vector2( 29.5384, 30.6286 )
 custom_solver_bias = 0.0
 radius = 16.4644
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -344,7 +344,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 7
-frame = 44
+frame = 87
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="Stand" type="CollisionShape2D" parent="." index="1"]
@@ -364,6 +364,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Anim" type="AnimationPlayer" parent="." index="3"]
 
+pause_mode = 1
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
@@ -387,7 +388,9 @@ anims/SlashWall = SubResource( 16 )
 anims/SuperAtack = SubResource( 17 )
 anims/Tired = SubResource( 18 )
 anims/Trepar = SubResource( 19 )
+next/Atack1 = "Atack2"
 blend_times = [  ]
+_sections_unfolded = [ "Pause", "Playback Options" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 
@@ -450,8 +453,6 @@ audio_bus_name = "Master"
 position = Vector2( 8.30944, -2.80641 )
 shape = SubResource( 21 )
 disabled = true
-
-[connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]
 
 [connection signal="body_entered" from="Attack_Area" to="." method="_on_Attack_Area_body_entered"]
 

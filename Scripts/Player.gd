@@ -9,28 +9,31 @@ const VELOCITY_CAMERA_H = 2
 const FRICTION_IDLE = 8
 const FRICTION_DOWN_SLASH = 2
 const TYPE = "PLAYER"
+var in_attack = false;
 
 var friction = 6
 var lives = 3
-var live = "live" 
 var hurtMode = false
+var dead = false
 var velocity = Vector2()
 var switch_anim = ""
 var start_anim = false
 
 func _physics_process(delta):
+	if(dead):
+		return
 	damage_loop()
-	if hurtMode:
-		animation_loop("Tired")
-	else:
-		if live == "live":
-			movement_loop(delta)
-			animation_loop(delta)
+	animation_loop(delta)
+	if live == "live":
+		movement_loop(delta)
 
-		else:
+	else:
+
 			dead()
+			dead = true
 	gravity_loop(delta)
 	if hurting:
+		set_global_position(global_position + knockdir)
 		velocity = move_and_slide(knockdir, FLOOR)
 		hurting=false
 	else:
@@ -39,8 +42,10 @@ func _physics_process(delta):
 func anim_switch(newanim):
 	switch_anim = newanim
 
-func animation_loop(newAnim):
+func animation_loop(delta):
 	if $Anim.current_animation != switch_anim:
+		print("estado actual ---->" +$Anim.current_animation)
+		print("nuevo estado ---->" + switch_anim)
 		$Anim.play(switch_anim)
 	
 func gravity_loop(delta):
@@ -57,6 +62,8 @@ func movement_loop(delta):
 		moveRigth()
 	elif LEFT:
 		moveLeft()
+	elif in_attack:
+		pass
 	else:
 		#rozamiento
 		if velocity.x < 0:
@@ -76,7 +83,20 @@ func movement_loop(delta):
 				#ataque
 				if PUNCH:
 					$Attack_Area/CollisionShape2D.set_disabled(true) 
-					anim_switch("Atack1")
+					var animation = switch_anim
+					print(animation)
+					var next_attack = "Atack1"
+					if animation == "Atack1":
+						next_attack = "Atack2"
+					elif animation == "Atack2":
+						next_attack = "Atack3"
+					elif animation == "Atack3":
+						next_attack = "Atack1"
+					else:
+						next_attack = "Atack1"
+					in_attack = true
+					anim_switch(next_attack)
+					$Anim.connect("animation_finished",self,"end_attack")
 	friction = FRICTION_IDLE
 	if UP:
 		jump()
@@ -91,7 +111,8 @@ func movement_loop(delta):
 		elif is_on_floor() && velocity.x == 0:
 			anim_switch("Idle_down")
 		
-	
+func end_attack(anim):
+	print("end")
 	
 func moveRigth():
 	velocity.x += ACCELERATION
@@ -127,12 +148,11 @@ func fallingDown():
 
 func dead():
 	anim_switch("Tired")
-	$Anim.play("Tired")
 
 ##NO ENTRA A ESTA SIGNAL 
-func _on_Anim_animation_finished():
-	print("LCDLLAB")
-	start_anim = false
+#func _on_Anim_animation_finished():
+	#print("LCDLLAB")
+	#start_anim = false
 	#if $Anim.current_animation == "Tired":
 	#	hurtMode = true
 	#	print(hurtMode, "me tocaste el culo")
