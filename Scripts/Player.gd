@@ -134,10 +134,12 @@ func moveLeft():
 
 func jump():
 	if is_on_floor():
+		get_tree().get_nodes_in_group("sfx")[0].get_node("jump_player").play()
 		velocity.y = -JUMP_POWER
 		anim_switch("Jump")
 
 func fallingDown():
+	get_tree().get_nodes_in_group("sfx")[0].get_node("jump_player").stop()
 	anim_switch("Down")
 
 #func hurt():

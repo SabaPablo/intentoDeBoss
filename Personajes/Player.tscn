@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Images/Player.png" type="Texture" id=2]
+[ext_resource path="res://SFX/jump_player.ogg" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -10,9 +11,9 @@ extents = Vector2( 7.51722, 14.5595 )
 
 [sub_resource type="Animation" id=2]
 
-length = 0.4
+length = 0.5
 loop = false
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -20,10 +21,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.11, 0.18, 0.25, 0.31, 0.37 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0, 40, 41, 42, 43, 44, 45, 46, 47, 49 ]
+"update": 1,
+"values": [ 39, 40, 41, 42, 43, 44, 45, 46, 47, 49 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -293,7 +294,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
-tracks/0/loop_wrap = false
+tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
@@ -344,7 +345,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 7
-frame = 87
+frame = 86
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="Stand" type="CollisionShape2D" parent="." index="1"]
@@ -364,7 +365,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Anim" type="AnimationPlayer" parent="." index="3"]
 
-pause_mode = 1
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
@@ -388,13 +388,11 @@ anims/SlashWall = SubResource( 16 )
 anims/SuperAtack = SubResource( 17 )
 anims/Tired = SubResource( 18 )
 anims/Trepar = SubResource( 19 )
-next/Atack1 = "Atack2"
 blend_times = [  ]
-_sections_unfolded = [ "Pause", "Playback Options" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 
-visible = false
+position = Vector2( 6.75432, 16.7707 )
 offset = Vector2( 100, -50 )
 anchor_mode = 1
 rotating = false
@@ -416,12 +414,13 @@ drag_margin_top = 1.0
 drag_margin_right = 0.2
 drag_margin_bottom = 0.2
 editor_draw_screen = true
-editor_draw_limits = false
+editor_draw_limits = true
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing" ]
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
-[node name="hitbox" type="Area2D" parent="." index="5"]
+[node name="Area2D" type="Area2D" parent="." index="5"]
 
+visible = false
 position = Vector2( -0.260016, 2.38421 )
 scale = Vector2( 0.33305, 0.469522 )
 input_pickable = true
@@ -432,14 +431,13 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
+visible = false
 shape = SubResource( 20 )
 
 [node name="Attack_Area" type="Area2D" parent="." index="6"]
 
-editor/display_folded = true
-visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -450,9 +448,26 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area" index="0"]
 
-position = Vector2( 8.30944, -2.80641 )
+position = Vector2( 8.30944, -1.9919 )
 shape = SubResource( 21 )
 disabled = true
+
+[node name="sfx" type="Node" parent="." index="7" groups=[
+"sfx",
+]]
+
+[node name="jump_player" type="AudioStreamPlayer" parent="sfx" index="0"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
 [connection signal="body_entered" from="Attack_Area" to="." method="_on_Attack_Area_body_entered"]
 
