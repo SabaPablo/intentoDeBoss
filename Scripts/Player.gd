@@ -13,7 +13,7 @@ const FRICTION_IDLE = 8
 const FRICTION_DOWN_SLASH = 2
 const TYPE = "PLAYER"
 var in_attack = false;
-
+var power
 var friction = 6
 var lives = 3
 var hurtMode = false
@@ -21,11 +21,25 @@ var dead = false
 var velocity = Vector2()
 var switch_anim = ""
 #var start_anim = false
+var state = "default"
 
 func _physics_process(delta):
 	if(dead):
 		return
-	#damage_loop()
+	match state:
+		"default":
+			state_default(delta)
+		"swing":
+			state_swing(delta)
+
+func atack():
+	anim_switch("Atack1")
+
+func state_swing(delta):
+	animation_loop()
+
+func state_default(delta):
+		#damage_loop()
 	animation_loop()
 	if live == "live":
 		movement_loop(delta)
@@ -40,16 +54,12 @@ func _physics_process(delta):
 	else:
 		velocity = move_and_slide(velocity, FLOOR)
 
-
-
 func anim_switch(newanim):
 	switch_anim = newanim
 
 
 func animation_loop():
 	if $Anim.current_animation != switch_anim:
-		print("estado actual ---->" +$Anim.current_animation)
-		print("nuevo estado ---->" + switch_anim)
 		$Anim.play(switch_anim)
 
 
@@ -63,6 +73,8 @@ func movement_loop(delta):
 	var UP	 	= Input.is_action_pressed("ui_up")
 	var DOWN 	= Input.is_action_pressed("ui_down")
 	var PUNCH 	= Input.is_action_pressed("a")
+	var MAGIC_PUNCH = Input.is_action_pressed("b")
+	MAGIC_PUNCH
 
 	if RIGHT:
 		moveRigth()
@@ -75,6 +87,7 @@ func movement_loop(delta):
 		if velocity.x < 0:
 			velocity.x += friction
 			velocity.x = min(velocity.x,0)
+			
 			anim_switch("Idle_slash")
 		elif velocity.x > 0:
 			velocity.x -= friction
@@ -86,22 +99,22 @@ func movement_loop(delta):
 				anim_switch("Idle")
 				$Stand.disabled = false
 	#ataque
-	if PUNCH:
+	if PUNCH and is_on_floor():
 		get_tree().get_nodes_in_group("sfx")[0].get_node("attack_player").play()
-		$Attack_Area/CollisionShape2D.set_disabled(true) 
-		var animation = switch_anim
-		var next_attack = "Atack1"
-		if animation == "Atack1":
-			next_attack = "Atack2"
-		elif animation == "Atack2":
-			next_attack = "Atack3"
-		elif animation == "Atack3":
-			next_attack = "Atack1"
-		else:
-			next_attack = "Atack1"
+		use_item(preload("res://Items/sword.tscn"))
 		#in_attack = true
-		anim_switch(next_attack)
+		anim_switch("Atack1")
 		#$Anim.connect("animation_finished",self,"end_attack")
+	if MAGIC_PUNCH and is_on_floor():
+		#get_tree().get_nodes_in_group("sfx")[0].get_node("attack_player").play()
+		$Timer.start()
+		#in_attack = true
+		anim_switch("Power")
+		power = preload("res://Efects/nebula.tscn")
+		var newitem = power.instance()
+		add_child(newitem)
+		
+		state = "swing"
 	friction = FRICTION_IDLE
 	if UP:
 		jump()
@@ -169,3 +182,38 @@ func dead():
 func _on_Attack_Area_body_entered(body):
 	if body.is_in_group("Enemies"):
 		body.hurt()
+		
+		
+func use_magic():
+	var item = preload("res://Items/magic.tscn")
+	var newitem = item.instance()
+	newitem.set_player(self)
+	newitem.set_flip($Sprite.flip_h)
+	newitem.add_to_group(str(newitem.get_name(),self))
+	var new_position
+	if($Sprite.flip_h):
+		newitem.position = position + Vector2(-10,-40)
+	else:
+		 newitem.position = position + Vector2(10,-40)
+	get_parent().add_child(newitem)
+	if get_tree().get_nodes_in_group(str(newitem.get_name(), self)).size() > newitem.maxamount:
+		newitem.queue_free()
+	
+	
+	
+func use_item(item):
+	var newitem = item.instance()
+	newitem.add_to_group(str(newitem.get_name(),self))
+	var new_position
+	if($Sprite.flip_h):
+		new_position = newitem.position + Vector2(-20,0)
+	else:
+		new_position = newitem.position + Vector2(20,0)
+	newitem.position = new_position
+	add_child(newitem)
+	if get_tree().get_nodes_in_group(str(newitem.get_name(), self)).size() > newitem.maxamount:
+		newitem.queue_free()
+
+func _on_Timer_timeout():
+	use_magic()
+	$Timer.stop()

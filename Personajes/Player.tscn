@@ -24,7 +24,7 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
+"update": 2,
 "values": [ 39, 40, 41, 42, 43, 44, 45, 46, 47, 49 ]
 }
 
@@ -200,7 +200,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=13]
 
 length = 0.9
-loop = true
+loop = false
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -333,7 +333,7 @@ extents = Vector2( 29.5384, 30.6286 )
 custom_solver_bias = 0.0
 radius = 16.4644
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -346,7 +346,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 7
-frame = 86
+frame = 93
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="Stand" type="CollisionShape2D" parent="." index="1"]
@@ -475,8 +475,17 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
+[node name="Timer" type="Timer" parent="." index="8"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 
 [connection signal="body_entered" from="Attack_Area" to="." method="_on_Attack_Area_body_entered"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

@@ -51,7 +51,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="KinematicBody2D" parent="." index="3" instance=ExtResource( 5 )]
 
-position = Vector2( 73.8845, 150.53 )
+position = Vector2( 36.6019, 139.417 )
 
 [node name="hud" parent="." index="4" instance=ExtResource( 6 )]
 

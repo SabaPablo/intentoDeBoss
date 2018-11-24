@@ -7,30 +7,39 @@ const DAMAGE = 10
 const FLOOR = Vector2(0,-1)
 var velocity = Vector2()
 var modoDiablo = false
+var hitstun = 0
+var knockdir = Vector2(0,0)
 const TYPE = "ENEMY"
 var direction = 1
 var wait = false
 var modeAttack = false
 var exclamations = preload("res://Efects/expresions/buble_expresion.tscn")
 var fireDead = preload("res://Efects/fire.tscn")
+var health = 30
+var status = "live"
 
 func _ready():
 	pass
 	
 func _physics_process(delta):
-	if modeAttack:
-		attack()
-	else:
-		if(wait):
-			velocity.x = 0
+	if status == "live":
+		if modeAttack:
+			attack()
 		else:
-			if(modoDiablo):
-				evil_movement_loop();
+			if(wait):
+				velocity.x = 0
 			else:
-				relax_movement_loop();
+				if(modoDiablo):
+					evil_movement_loop();
+				else:
+					relax_movement_loop();
+	else:
+		pass
+	
 	
 	velocity = move_and_slide(velocity,FLOOR)
 	dont_fall()
+	damage_loop()
 	if is_on_wall():
 		turn()
 		
@@ -61,8 +70,7 @@ func evil_movement_loop():
 	
 
 func _on_AreaDeVision_body_entered(body):
-	if body.get("TYPE") == "PLAYER":
-		print("muereee")
+	if body.get("TYPE") == "PLAYER" and status=="live":
 		$Animation.play("React")
 		wait = true
 		$timer.start()
@@ -76,13 +84,12 @@ func get_exclamation(x,y,expres):
 	exclamation.get_node("anim").play(expres)
 
 func _on_AreaDeVision_body_exited(body):
-	if body.get("TYPE") == "PLAYER":
+	if body.get("TYPE") == "PLAYER" and status == "live":
 		modo_lazy()
 		wait = true
 		$timer.start()
 		get_exclamation(self.position.x,self.position.y,"quest")
 		$timer.start()
-		print("Se fue?")
 		$Animation.play("React")
 
 func modo_lazy():
@@ -92,12 +99,12 @@ func modo_diablo():
 	modoDiablo = true
 
 func _on_AttackeZone_body_entered(body):
-	if body.get("TYPE") == "PLAYER":
+	if body.get("TYPE") == "PLAYER" and status == "live":
 		modeAttack = true
 
 
 func _on_AttackeZone_body_exited(body):
-	if body.get("TYPE") == "PLAYER":
+	if body.get("TYPE") == "PLAYER" and status == "live":
 		modeAttack = false
 
 
@@ -106,10 +113,12 @@ func _on_Timer_timeout():
 
 
 func dead():
-	var dead = fireDead.instance()
-	dead.position = $Animation.global_position
-	queue_free()
-	get_parent().add_child(dead)
+	#var dead = fireDead.instance()
+	#dead.position = $Animation.global_position
+	$Animation.play("Dead")
+	status = "dead"
+	#queue_free()
+	#get_parent().add_child(dead)
 
 func hurt():
 	$Animation.play("Hit")
@@ -128,3 +137,27 @@ func turn():
 	$Animation/AreaDeVision/CollisionShape2D.position.x *= -1
 	$Animation/AttackeZone/CollisionShape2D.position.x *= -1
 	$RayCast2D.position.x *= -1
+	
+func damage_loop():
+	if hitstun > 0:
+		hitstun -=1
+		#$Sprite.texture = texture_hurt
+	else:
+		#$Sprite.texture = texture_default
+		if TYPE == "ENEMY" && health <= 0:
+			#get_parent().add_child(death_animation)
+			#death_animation.global_transform = global_transform
+			dead()
+	for area in $hitbox.get_overlapping_areas():
+		var body = area.get_parent()
+		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE:
+			health -= body.get("DAMAGE")
+			hitstun = 10
+			knockdir = transform.origin - body.transform.origin
+			emit_signal("health_changed", health)
+
+	
+
+func _on_Animation_animation_finished():
+	if status == "dead":
+		queue_free() # replace with function body

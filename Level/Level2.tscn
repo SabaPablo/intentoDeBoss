@@ -115,11 +115,12 @@ next_lvl = "Null"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="6"]
 
+editor/display_folded = true
 layer = -1
-offset = Vector2( 0, 0 )
+offset = Vector2( 0, 20 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+transform = Transform2D( 1, 0, 0, 1, 0, 20 )
 scroll_offset = Vector2( 0, 0 )
 scroll_base_offset = Vector2( 0, 0 )
 scroll_base_scale = Vector2( 1, 1 )
@@ -130,6 +131,6 @@ _sections_unfolded = [ "Scroll" ]
 
 [node name="Main" parent="ParallaxBackground" index="0" instance=ExtResource( 7 )]
 
-position = Vector2( 0.390884, 2.33447 )
+position = Vector2( 0, 50 )
 
 
