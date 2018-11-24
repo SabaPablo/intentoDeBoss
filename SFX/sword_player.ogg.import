@@ -11,5 +11,5 @@ dest_files=[ "res://.import/sword_player.ogg-5416436623ed824bed5948232e693983.og
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

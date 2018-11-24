@@ -85,6 +85,7 @@ func movement_loop(delta):
 
 				#ataque
 				if PUNCH:
+					get_tree().get_nodes_in_group("sfx")[0].get_node("attack_player").play()
 					$Attack_Area/CollisionShape2D.set_disabled(true) 
 					var animation = switch_anim
 					print(animation)
