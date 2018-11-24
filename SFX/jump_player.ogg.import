@@ -11,5 +11,5 @@ dest_files=[ "res://.import/jump_player.ogg-b8cddcd1234022ced730727aa9e155b3.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
