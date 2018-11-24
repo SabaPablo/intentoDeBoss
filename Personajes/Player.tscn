@@ -332,8 +332,9 @@ extents = Vector2( 29.5384, 30.6286 )
 custom_solver_bias = 0.0
 radius = 16.4644
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
+editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1

@@ -1,5 +1,8 @@
 extends "res://Scripts/Entity.gd"
 
+signal health_changed
+signal died
+
 const SPEED = 150
 const GRAVITY = 15
 const JUMP_POWER = 350

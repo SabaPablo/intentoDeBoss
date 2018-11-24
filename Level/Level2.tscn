@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://TileSets/DirtAutoTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Level/TileMap.gd" type="Script" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://Personajes/Spartian/Spartian.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Personajes/Skeleton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Stage/WoodDoor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Level/mountain.tscn" type="PackedScene" id=7]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -34,7 +35,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( -33.2976, -33.8973 )
+position = Vector2( 54.1783, 127.823 )
 
 [node name="Spartian" parent="." index="2" instance=ExtResource( 4 )]
 
@@ -111,5 +112,24 @@ position = Vector2( 1114.77, -47.1614 )
 scale = Vector2( 0.8, 0.85 )
 _sections_unfolded = [ "Transform" ]
 next_lvl = "Null"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="6"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+_sections_unfolded = [ "Scroll" ]
+
+[node name="Main" parent="ParallaxBackground" index="0" instance=ExtResource( 7 )]
+
+position = Vector2( 0.390884, 2.33447 )
 
 

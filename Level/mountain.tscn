@@ -7,7 +7,7 @@
 [ext_resource path="res://Images/parallax_mountain_pack/layers/parallax-mountain-mountains.png" type="Texture" id=5]
 [ext_resource path="res://Images/parallax_mountain_pack/layers/parallax-mountain-trees.png" type="Texture" id=6]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -35,7 +35,7 @@ _sections_unfolded = [ "Scroll" ]
 z_index = -14
 motion_scale = Vector2( 0.1, 1 )
 motion_offset = Vector2( 0, 0 )
-motion_mirroring = Vector2( 272, 0 )
+motion_mirroring = Vector2( 272, 150 )
 _sections_unfolded = [ "Motion", "Z Index" ]
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer5" index="0"]
@@ -60,7 +60,7 @@ stretch_mode = 0
 z_index = -13
 motion_scale = Vector2( 0.8, 1 )
 motion_offset = Vector2( 0, 0 )
-motion_mirroring = Vector2( 272, 0 )
+motion_mirroring = Vector2( 272, 150 )
 _sections_unfolded = [ "Motion", "Z Index" ]
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4" index="0"]
@@ -85,7 +85,7 @@ stretch_mode = 0
 z_index = -12
 motion_scale = Vector2( 0.9, 1 )
 motion_offset = Vector2( 0, 0 )
-motion_mirroring = Vector2( 272, 0 )
+motion_mirroring = Vector2( 272, 150 )
 _sections_unfolded = [ "Motion", "Z Index" ]
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3" index="0"]
@@ -111,7 +111,7 @@ z_index = 2
 z_as_relative = false
 motion_scale = Vector2( 1, 1 )
 motion_offset = Vector2( 0, 0 )
-motion_mirroring = Vector2( 272, 0 )
+motion_mirroring = Vector2( 272, 150 )
 _sections_unfolded = [ "Motion", "Transform", "Z Index" ]
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2" index="0"]
@@ -136,7 +136,7 @@ stretch_mode = 0
 z_index = 3
 motion_scale = Vector2( 1, 1 )
 motion_offset = Vector2( 0, 0 )
-motion_mirroring = Vector2( 272, 0 )
+motion_mirroring = Vector2( 272, 150 )
 _sections_unfolded = [ "Motion", "Transform", "Z Index" ]
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer" index="0"]

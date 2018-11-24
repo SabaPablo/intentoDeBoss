@@ -6,7 +6,7 @@
 [ext_resource path="res://Images/ui/sp.png" type="Texture" id=4]
 [ext_resource path="res://Images/ui/mana.png" type="Texture" id=5]
 
-[node name="hud" type="CanvasLayer" index="0"]
+[node name="hud" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
