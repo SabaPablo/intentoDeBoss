@@ -20,20 +20,18 @@ var hurtMode = false
 var dead = false
 var velocity = Vector2()
 var switch_anim = ""
-var start_anim = false
+#var start_anim = false
 
 func _physics_process(delta):
 	if(dead):
 		return
-	damage_loop()
-	animation_loop(delta)
+	#damage_loop()
+	animation_loop()
 	if live == "live":
 		movement_loop(delta)
-
 	else:
-
-			dead()
-			dead = true
+		dead()
+		dead = true
 	gravity_loop(delta)
 	if hurting:
 		set_global_position(global_position + knockdir)
@@ -41,19 +39,24 @@ func _physics_process(delta):
 		hurting=false
 	else:
 		velocity = move_and_slide(velocity, FLOOR)
-		
+
+
+
 func anim_switch(newanim):
 	switch_anim = newanim
 
-func animation_loop(delta):
+
+func animation_loop():
 	if $Anim.current_animation != switch_anim:
 		print("estado actual ---->" +$Anim.current_animation)
 		print("nuevo estado ---->" + switch_anim)
 		$Anim.play(switch_anim)
-	
+
+
 func gravity_loop(delta):
 	velocity.y += GRAVITY
-	
+
+
 func movement_loop(delta):
 	var LEFT 	= Input.is_action_pressed("ui_left")
 	var RIGHT 	= Input.is_action_pressed("ui_right")
@@ -65,8 +68,8 @@ func movement_loop(delta):
 		moveRigth()
 	elif LEFT:
 		moveLeft()
-	elif in_attack:
-		pass
+	#elif in_attack:
+	#	pass
 	else:
 		#rozamiento
 		if velocity.x < 0:
@@ -82,25 +85,23 @@ func movement_loop(delta):
 			if is_on_floor():
 				anim_switch("Idle")
 				$Stand.disabled = false
-
-				#ataque
-				if PUNCH:
-					get_tree().get_nodes_in_group("sfx")[0].get_node("attack_player").play()
-					$Attack_Area/CollisionShape2D.set_disabled(true) 
-					var animation = switch_anim
-					print(animation)
-					var next_attack = "Atack1"
-					if animation == "Atack1":
-						next_attack = "Atack2"
-					elif animation == "Atack2":
-						next_attack = "Atack3"
-					elif animation == "Atack3":
-						next_attack = "Atack1"
-					else:
-						next_attack = "Atack1"
-					in_attack = true
-					anim_switch(next_attack)
-					$Anim.connect("animation_finished",self,"end_attack")
+	#ataque
+	if PUNCH:
+		get_tree().get_nodes_in_group("sfx")[0].get_node("attack_player").play()
+		$Attack_Area/CollisionShape2D.set_disabled(true) 
+		var animation = switch_anim
+		var next_attack = "Atack1"
+		if animation == "Atack1":
+			next_attack = "Atack2"
+		elif animation == "Atack2":
+			next_attack = "Atack3"
+		elif animation == "Atack3":
+			next_attack = "Atack1"
+		else:
+			next_attack = "Atack1"
+		#in_attack = true
+		anim_switch(next_attack)
+		#$Anim.connect("animation_finished",self,"end_attack")
 	friction = FRICTION_IDLE
 	if UP:
 		jump()
@@ -115,8 +116,8 @@ func movement_loop(delta):
 		elif is_on_floor() && velocity.x == 0:
 			anim_switch("Idle_down")
 		
-func end_attack(anim):
-	print("end")
+#func end_attack(anim):
+#	print("end")
 	
 func moveRigth():
 	velocity.x += ACCELERATION
@@ -157,12 +158,12 @@ func dead():
 ##NO ENTRA A ESTA SIGNAL 
 #func _on_Anim_animation_finished():
 	#print("LCDLLAB")
-	#start_anim = false
-	#if $Anim.current_animation == "Tired":
-	#	hurtMode = true
+#	start_anim = false
+#	if $Anim.current_animation == "Tired":
+#		hurtMode = true
 	#	print(hurtMode, "me tocaste el culo")
-	#elif $Anim.current_animation == "Atack": 
-	#	$Attack_Area/CollisionShape2D.set_disabled(false) 
+#	elif $Anim.current_animation == "Atack1": 
+#		$Attack_Area/CollisionShape2D.set_disabled(false) 
 		
 		
 func _on_Attack_Area_body_entered(body):
