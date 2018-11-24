@@ -102,30 +102,20 @@ func _on_AttackeZone_body_entered(body):
 	if body.get("TYPE") == "PLAYER" and status == "live":
 		modeAttack = true
 
-
 func _on_AttackeZone_body_exited(body):
 	if body.get("TYPE") == "PLAYER" and status == "live":
 		modeAttack = false
 
-
 func _on_Timer_timeout():
 	wait = false
 
-
 func dead():
-	#var dead = fireDead.instance()
-	#dead.position = $Animation.global_position
+	$CollisionShape2D.set_disabled(true) 
 	$Animation.play("Dead")
 	status = "dead"
-	#queue_free()
-	#get_parent().add_child(dead)
 
 func hurt():
 	$Animation.play("Hit")
-	
-#func _on_Area2D_body_entered(body):
-#	if body.name == "Player":
-#		body.hurt()
 	
 func dont_fall():
 	print($RayCast2D.is_colliding())
@@ -141,12 +131,8 @@ func turn():
 func damage_loop():
 	if hitstun > 0:
 		hitstun -=1
-		#$Sprite.texture = texture_hurt
 	else:
-		#$Sprite.texture = texture_default
 		if TYPE == "ENEMY" && health <= 0:
-			#get_parent().add_child(death_animation)
-			#death_animation.global_transform = global_transform
 			dead()
 	for area in $hitbox.get_overlapping_areas():
 		var body = area.get_parent()
@@ -155,8 +141,6 @@ func damage_loop():
 			hitstun = 10
 			knockdir = transform.origin - body.transform.origin
 			emit_signal("health_changed", health)
-
-	
 
 func _on_Animation_animation_finished():
 	if status == "dead":

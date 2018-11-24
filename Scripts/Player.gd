@@ -159,30 +159,12 @@ func jump():
 func fallingDown():
 	anim_switch("Down")
 
-#func hurt():
-#	if lives != 0:
-#		lives -= 1
-#	else:
-#		live = "dead"
-
 func dead():
 	anim_switch("Tired")
-
-##NO ENTRA A ESTA SIGNAL 
-#func _on_Anim_animation_finished():
-	#print("LCDLLAB")
-#	start_anim = false
-#	if $Anim.current_animation == "Tired":
-#		hurtMode = true
-	#	print(hurtMode, "me tocaste el culo")
-#	elif $Anim.current_animation == "Atack1": 
-#		$Attack_Area/CollisionShape2D.set_disabled(false) 
-		
 		
 func _on_Attack_Area_body_entered(body):
 	if body.is_in_group("Enemies"):
 		body.hurt()
-		
 		
 func use_magic():
 	var item = preload("res://Items/magic.tscn")
@@ -198,8 +180,6 @@ func use_magic():
 	get_parent().add_child(newitem)
 	if get_tree().get_nodes_in_group(str(newitem.get_name(), self)).size() > newitem.maxamount:
 		newitem.queue_free()
-	
-	
 	
 func use_item(item):
 	var newitem = item.instance()

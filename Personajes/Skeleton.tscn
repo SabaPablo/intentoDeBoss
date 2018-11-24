@@ -123,7 +123,7 @@ _sections_unfolded = [ "Resource" ]
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Skeleton" type="KinematicBody2D" index="0" groups=[
+[node name="Skeleton" type="KinematicBody2D" groups=[
 "Enemies",
 ]]
 
