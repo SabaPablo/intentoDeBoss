@@ -22,6 +22,8 @@ var velocity = Vector2()
 var switch_anim = ""
 #var start_anim = false
 var state = "default"
+var sword = preload("res://Items/sword.tscn")
+var fire_magic = preload("res://Efects/nebula.tscn")
 
 func _physics_process(delta):
 	if(dead):
@@ -76,18 +78,16 @@ func movement_loop(delta):
 	var MAGIC_PUNCH = Input.is_action_pressed("b")
 	MAGIC_PUNCH
 
+
 	if RIGHT:
 		moveRigth()
 	elif LEFT:
 		moveLeft()
-	#elif in_attack:
-	#	pass
 	else:
 		#rozamiento
 		if velocity.x < 0:
 			velocity.x += friction
 			velocity.x = min(velocity.x,0)
-			
 			anim_switch("Idle_slash")
 		elif velocity.x > 0:
 			velocity.x -= friction
@@ -101,16 +101,12 @@ func movement_loop(delta):
 	#ataque
 	if PUNCH and is_on_floor():
 		get_tree().get_nodes_in_group("sfx")[0].get_node("attack_player").play()
-		use_item(preload("res://Items/sword.tscn"))
-		#in_attack = true
+		use_item(sword)
 		anim_switch("Atack1")
-		#$Anim.connect("animation_finished",self,"end_attack")
 	if MAGIC_PUNCH and is_on_floor():
-		#get_tree().get_nodes_in_group("sfx")[0].get_node("attack_player").play()
 		$Timer.start()
-		#in_attack = true
 		anim_switch("Power")
-		power = preload("res://Efects/nebula.tscn")
+		power = fire_magic 
 		var newitem = power.instance()
 		add_child(newitem)
 		
@@ -129,9 +125,6 @@ func movement_loop(delta):
 		elif is_on_floor() && velocity.x == 0:
 			anim_switch("Idle_down")
 		
-#func end_attack(anim):
-#	print("end")
-	
 func moveRigth():
 	velocity.x += ACCELERATION
 	$Sprite.flip_h = false
@@ -186,9 +179,9 @@ func use_item(item):
 	newitem.add_to_group(str(newitem.get_name(),self))
 	var new_position
 	if($Sprite.flip_h):
-		new_position = newitem.position + Vector2(-20,0)
+		new_position = newitem.position + Vector2(-10,0)
 	else:
-		new_position = newitem.position + Vector2(20,0)
+		new_position = newitem.position + Vector2(10,0)
 	newitem.position = new_position
 	add_child(newitem)
 	if get_tree().get_nodes_in_group(str(newitem.get_name(), self)).size() > newitem.maxamount:

@@ -331,7 +331,7 @@ extents = Vector2( 29.5384, 30.6286 )
 [sub_resource type="CircleShape2D" id=21]
 
 custom_solver_bias = 0.0
-radius = 16.4644
+radius = 12.7091
 
 [node name="Player" type="KinematicBody2D"]
 
@@ -449,7 +449,7 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area" index="0"]
 
-position = Vector2( 8.30944, -1.9919 )
+position = Vector2( 4.30944, 0.00810003 )
 shape = SubResource( 21 )
 disabled = true
 
