@@ -38,7 +38,5 @@ func damage_loop():
 
 func recive_hurt():
 	hurting = true;
-	print("recibo daño")
 	health -=30
 	emit_signal("health_changed", health)
-	print(health)

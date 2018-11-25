@@ -10,7 +10,7 @@ func _on_Start_pressed():
 
 
 func _on_Quit_pressed():
-	get_tree().get_nodes_in_group("sfx")[0].get_node("clic").play()
+	#get_tree().get_nodes_in_group("sfx")[0].get_node("clic").play()
 	get_tree().quit()
 
 

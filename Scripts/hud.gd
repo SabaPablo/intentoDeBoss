@@ -40,5 +40,4 @@ func _process(delta):
 
 
 func _on_Player_health_changed(healt):
-	print("healt-->"+healt)
 	real_hp = healt

@@ -193,4 +193,3 @@ func _on_Timer_timeout():
 	
 func game_over(delta):
 	print("game_over()")
-	$Control/PopupDialog.popup_centered()

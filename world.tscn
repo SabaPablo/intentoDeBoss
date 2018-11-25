@@ -62,4 +62,6 @@ scale = Vector2( 0.6, 0.6 )
 _sections_unfolded = [ "Transform" ]
 next_lvl = "res://Level/Level2.tscn"
 
+[connection signal="health_changed" from="Player" to="hud" method="_on_Player_health_changed"]
+
 
