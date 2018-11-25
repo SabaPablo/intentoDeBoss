@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Images/Player.png" type="Texture" id=2]
 [ext_resource path="res://SFX/jump_player.ogg" type="AudioStream" id=3]
 [ext_resource path="res://SFX/sword_player.ogg" type="AudioStream" id=4]
+[ext_resource path="res://UIs/PopUpGameOver.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -441,6 +442,7 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
 [node name="Area2D" type="Area2D" parent="." index="5"]
 
+editor/display_folded = true
 visible = false
 position = Vector2( -0.260016, 2.38421 )
 scale = Vector2( 0.33305, 0.469522 )
@@ -477,6 +479,8 @@ disabled = true
 "sfx",
 ]]
 
+editor/display_folded = true
+
 [node name="jump_player" type="AudioStreamPlayer" parent="sfx" index="0"]
 
 stream = ExtResource( 3 )
@@ -501,6 +505,8 @@ process_mode = 1
 wait_time = 0.5
 one_shot = false
 autostart = false
+
+[node name="Control" parent="." index="9" instance=ExtResource( 5 )]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 

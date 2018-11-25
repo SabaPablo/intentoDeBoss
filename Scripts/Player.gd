@@ -1,8 +1,5 @@
 extends "res://Scripts/Entity.gd"
 
-signal health_changed
-signal died
-
 const SPEED = 150
 const GRAVITY = 15
 const JUMP_POWER = 350
@@ -35,6 +32,7 @@ func _physics_process(delta):
 			state_swing(delta)
 		"dead":
 			game_over(delta)
+	damage_loop()
 
 func atack():
 	anim_switch("Atack1")
@@ -155,6 +153,8 @@ func fallingDown():
 
 func dead():
 	anim_switch("Tired")
+	print("dead()")
+	$Control/PopupDialog.popup_centered()
 	
 		
 func _on_Attack_Area_body_entered(body):
@@ -190,4 +190,5 @@ func _on_Timer_timeout():
 	$Timer.stop()
 	
 func game_over(delta):
-	anim_switch("Jump")
+	print("game_over()")
+	$Control/PopupDialog.popup_centered()

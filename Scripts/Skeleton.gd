@@ -35,8 +35,6 @@ func _physics_process(delta):
 					relax_movement_loop();
 	else:
 		pass
-	
-	
 	velocity = move_and_slide(velocity,FLOOR)
 	dont_fall()
 	damage_loop()
@@ -101,6 +99,7 @@ func modo_diablo():
 func _on_AttackeZone_body_entered(body):
 	if body.get("TYPE") == "PLAYER" and status == "live":
 		modeAttack = true
+		body.recive_hurt()
 
 func _on_AttackeZone_body_exited(body):
 	if body.get("TYPE") == "PLAYER" and status == "live":
@@ -118,7 +117,6 @@ func hurt():
 	$Animation.play("Hit")
 	
 func dont_fall():
-	print($RayCast2D.is_colliding())
 	if !$RayCast2D.is_colliding():
 		turn()
 		
@@ -146,4 +144,4 @@ func damage_loop():
 
 func _on_Animation_animation_finished():
 	if status == "dead":
-		queue_free() # replace with function body
+		queue_free()
