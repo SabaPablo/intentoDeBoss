@@ -12,7 +12,7 @@
 
 size = 30
 use_mipmaps = false
-use_filter = false
+use_filter = true
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
@@ -29,9 +29,9 @@ vertical = false
 
 [sub_resource type="DynamicFont" id=3]
 
-size = 40
+size = 60
 use_mipmaps = false
-use_filter = false
+use_filter = true
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
@@ -121,10 +121,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 76.0
-margin_top = 43.0
-margin_right = 379.0
-margin_bottom = 120.0
+margin_left = 33.0
+margin_top = 34.0
+margin_right = 454.0
+margin_bottom = 111.0
 rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
