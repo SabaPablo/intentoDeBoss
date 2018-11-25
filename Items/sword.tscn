@@ -9,7 +9,6 @@ extents = Vector2( 10.4307, 3.87315 )
 
 [node name="sword" type="Node2D"]
 
-position = Vector2( 0, -45 )
 rotation = 1.5708
 scale = Vector2( 1.7, 1.7 )
 z_index = -1
@@ -29,7 +28,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="area" index="0"]
 
-position = Vector2( 26.5441, -9.60895e-05 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 

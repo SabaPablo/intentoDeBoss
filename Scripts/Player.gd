@@ -20,7 +20,6 @@ var hurtMode = false
 var dead = false
 var velocity = Vector2()
 var switch_anim = ""
-#var start_anim = false
 var state = "default"
 var sword = preload("res://Items/sword.tscn")
 var halo = preload("res://Efects/nebula.tscn")
@@ -44,12 +43,12 @@ func state_swing(delta):
 	animation_loop()
 
 func state_default(delta):
-		#damage_loop()
 	animation_loop()
 	if live == "live":
 		movement_loop(delta)
 	else:
 		dead()
+		state = "dead"
 		dead = true
 	gravity_loop(delta)
 	if hurting:
@@ -109,8 +108,7 @@ func movement_loop(delta):
 	if MAGIC_PUNCH and is_on_floor():
 		$Timer.start()
 		anim_switch("Power")
-		power = halo
-		var newitem = power.instance()
+		var newitem = halo.instance()
 		add_child(newitem)
 		
 		state = "swing"
@@ -168,7 +166,6 @@ func use_magic():
 	newitem.set_player(self)
 	newitem.set_flip($Sprite.flip_h)
 	newitem.add_to_group(str(newitem.get_name(),self))
-	var new_position
 	if($Sprite.flip_h):
 		newitem.position = position + Vector2(-10,-40)
 	else:
@@ -180,12 +177,10 @@ func use_magic():
 func use_item(item):
 	var newitem = item.instance()
 	newitem.add_to_group(str(newitem.get_name(),self))
-	var new_position
 	if($Sprite.flip_h):
-		new_position = newitem.position + Vector2(-10,0)
+		newitem.position += Vector2(-10,0)
 	else:
-		new_position = newitem.position + Vector2(10,0)
-	newitem.position = new_position
+		newitem.position += Vector2(10,0)
 	add_child(newitem)
 	if get_tree().get_nodes_in_group(str(newitem.get_name(), self)).size() > newitem.maxamount:
 		newitem.queue_free()

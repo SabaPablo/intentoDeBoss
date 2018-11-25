@@ -125,7 +125,7 @@ tracks/0/keys = {
 "values": [ 73, 74, 75, 76 ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=9]
 
 resource_name = "GameOver"
 length = 1.0
@@ -144,7 +144,7 @@ tracks/0/keys = {
 "values": [ 67, 68 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 
 length = 1.4
 loop = true
@@ -162,7 +162,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 
 length = 1.0
 loop = true
@@ -180,7 +180,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 
 length = 0.2
 loop = false
@@ -198,7 +198,7 @@ tracks/0/keys = {
 "values": [ 86, 87 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 
 length = 1.0
 loop = false
@@ -216,7 +216,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 
 length = 0.9
 loop = false
@@ -234,7 +234,7 @@ tracks/0/keys = {
 "values": [ 85, 86, 87, 88, 89, 90, 91, 92, 93 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 
 length = 1.2
 loop = true
@@ -252,7 +252,7 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=16]
 
 length = 1.0
 loop = true
@@ -270,7 +270,7 @@ tracks/0/keys = {
 "values": [ 0, 25, 26, 27, 28 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=17]
 
 length = 0.2
 loop = true
@@ -288,7 +288,7 @@ tracks/0/keys = {
 "values": [ 79, 80 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=18]
 
 length = 1.6
 loop = true
@@ -306,7 +306,7 @@ tracks/0/keys = {
 "values": [ 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108 ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=19]
 
 length = 1.0
 loop = false
@@ -324,7 +324,7 @@ tracks/0/keys = {
 "values": [ 59, 60, 61, 62, 63, 64, 65, 66, 67, 68 ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=20]
 
 length = 0.4
 loop = true
@@ -342,12 +342,12 @@ tracks/0/keys = {
 "values": [ 81, 82, 83, 84 ]
 }
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=21]
 
 custom_solver_bias = 0.0
 extents = Vector2( 29.5384, 30.6286 )
 
-[sub_resource type="CircleShape2D" id=21]
+[sub_resource type="CircleShape2D" id=22]
 
 custom_solver_bias = 0.0
 radius = 12.7091
@@ -397,18 +397,18 @@ anims/Dead = SubResource( 5 )
 anims/Desenfundar = SubResource( 6 )
 anims/Down = SubResource( 7 )
 anims/Enfundar = SubResource( 8 )
-anims/GameOver = SubResource( 22 )
-anims/Idle = SubResource( 9 )
-anims/Idle_down = SubResource( 10 )
-anims/Idle_slash = SubResource( 11 )
-anims/Jump = SubResource( 12 )
-anims/Power = SubResource( 13 )
-anims/Run = SubResource( 14 )
-anims/Slash = SubResource( 15 )
-anims/SlashWall = SubResource( 16 )
-anims/SuperAtack = SubResource( 17 )
-anims/Tired = SubResource( 18 )
-anims/Trepar = SubResource( 19 )
+anims/GameOver = SubResource( 9 )
+anims/Idle = SubResource( 10 )
+anims/Idle_down = SubResource( 11 )
+anims/Idle_slash = SubResource( 12 )
+anims/Jump = SubResource( 13 )
+anims/Power = SubResource( 14 )
+anims/Run = SubResource( 15 )
+anims/Slash = SubResource( 16 )
+anims/SlashWall = SubResource( 17 )
+anims/SuperAtack = SubResource( 18 )
+anims/Tired = SubResource( 19 )
+anims/Trepar = SubResource( 20 )
 blend_times = [  ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
@@ -455,7 +455,7 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 visible = false
-shape = SubResource( 20 )
+shape = SubResource( 21 )
 
 [node name="Attack_Area" type="Area2D" parent="." index="6"]
 
@@ -470,7 +470,7 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area" index="0"]
 
 position = Vector2( 4.30944, 0.00810003 )
-shape = SubResource( 21 )
+shape = SubResource( 22 )
 disabled = true
 
 [node name="sfx" type="Node" parent="." index="7" groups=[

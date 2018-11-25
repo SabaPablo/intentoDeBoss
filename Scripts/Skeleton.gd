@@ -127,6 +127,8 @@ func turn():
 	$Animation/AreaDeVision/CollisionShape2D.position.x *= -1
 	$Animation/AttackeZone/CollisionShape2D.position.x *= -1
 	$RayCast2D.position.x *= -1
+	$halberd.position.x *= -1
+	
 	
 func damage_loop():
 	if hitstun > 0:

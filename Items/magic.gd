@@ -13,7 +13,6 @@ func _ready():
 	TYPE = play.TYPE
 
 	if play.has_method("state_swing"):
-		#play.atack()
 		$Timer.start()
 		$Timer2.start()
 		if left:
