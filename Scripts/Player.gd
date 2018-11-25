@@ -23,7 +23,8 @@ var switch_anim = ""
 #var start_anim = false
 var state = "default"
 var sword = preload("res://Items/sword.tscn")
-var fire_magic = preload("res://Efects/nebula.tscn")
+var halo = preload("res://Efects/nebula.tscn")
+var fire_power = preload("res://Items/magic.tscn")
 
 func _physics_process(delta):
 	if(dead):
@@ -33,6 +34,8 @@ func _physics_process(delta):
 			state_default(delta)
 		"swing":
 			state_swing(delta)
+		"dead":
+			game_over(delta)
 
 func atack():
 	anim_switch("Atack1")
@@ -106,7 +109,7 @@ func movement_loop(delta):
 	if MAGIC_PUNCH and is_on_floor():
 		$Timer.start()
 		anim_switch("Power")
-		power = fire_magic 
+		power = halo
 		var newitem = power.instance()
 		add_child(newitem)
 		
@@ -154,14 +157,14 @@ func fallingDown():
 
 func dead():
 	anim_switch("Tired")
+	
 		
 func _on_Attack_Area_body_entered(body):
 	if body.is_in_group("Enemies"):
 		body.hurt()
 		
 func use_magic():
-	var item = preload("res://Items/magic.tscn")
-	var newitem = item.instance()
+	var newitem = fire_power.instance()
 	newitem.set_player(self)
 	newitem.set_flip($Sprite.flip_h)
 	newitem.add_to_group(str(newitem.get_name(),self))
@@ -190,3 +193,6 @@ func use_item(item):
 func _on_Timer_timeout():
 	use_magic()
 	$Timer.stop()
+	
+func game_over(delta):
+	anim_switch("Jump")
