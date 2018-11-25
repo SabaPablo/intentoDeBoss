@@ -1,6 +1,7 @@
 extends "res://Scripts/Entity.gd"
 
 signal health_changed
+signal mana_changed
 
 const SPEED = 150
 const GRAVITY = 15
@@ -175,6 +176,7 @@ func use_magic():
 	get_parent().add_child(newitem)
 	if get_tree().get_nodes_in_group(str(newitem.get_name(), self)).size() > newitem.maxamount:
 		newitem.queue_free()
+	emit_signal("mana_changed", -30)
 	
 func use_item(item):
 	var newitem = item.instance()

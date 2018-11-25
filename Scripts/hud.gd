@@ -6,6 +6,7 @@ var z
 var real_hp
 var real_sp
 var real_tp
+var firstPass = true
 
 func _ready():
 	x = 0
@@ -41,3 +42,6 @@ func _process(delta):
 
 func _on_Player_health_changed(healt):
 	real_hp = healt
+
+func _on_Player_mana_changed(mana):
+	real_tp = mana
