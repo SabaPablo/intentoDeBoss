@@ -38,5 +38,7 @@ func _process(delta):
 	else:
 		z= z - 0.5
 
-func _on_player_health_changed(healt):
+
+func _on_Player_health_changed(healt):
+	print("healt-->"+healt)
 	real_hp = healt
