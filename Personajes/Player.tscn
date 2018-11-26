@@ -371,14 +371,12 @@ _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="Stand" type="CollisionShape2D" parent="." index="1"]
 
-visible = false
 position = Vector2( -0.17482, 2.62237 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Layed" type="CollisionShape2D" parent="." index="2"]
 
-visible = false
 position = Vector2( -0.17482, 13.4998 )
 scale = Vector2( 1, 0.25 )
 shape = SubResource( 1 )
@@ -442,8 +440,6 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
 [node name="Area2D" type="Area2D" parent="." index="5"]
 
-editor/display_folded = true
-visible = false
 position = Vector2( -0.260016, 2.38421 )
 scale = Vector2( 0.33305, 0.469522 )
 input_pickable = true
@@ -456,12 +452,10 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
-visible = false
 shape = SubResource( 21 )
 
 [node name="Attack_Area" type="Area2D" parent="." index="6"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

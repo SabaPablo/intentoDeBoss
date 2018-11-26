@@ -25,16 +25,7 @@ func damage_loop():
 		if TYPE == "ENEMY" && health <= 0:
 			queue_free()
 		if TYPE == "PLAYER" && health <= 0:
-			print("me mori")
 			live = "dead"
-#	for area in $hitbox.get_overlapping_areas():
-#		var body = area.get_parent()
-#		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE:
-#			health -= body.get("DAMAGE")
-#			hitstun = 10
-#			knockdir = transform.origin - body.transform.origin
-#			recive_hurt()
-#			emit_signal("health_changed", health)
 
 func recive_hurt():
 	hurting = true;

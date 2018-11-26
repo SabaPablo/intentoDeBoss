@@ -23,25 +23,33 @@ func _process(delta):
 	elif(x==real_hp):
 		pass
 	else:
-		x= x - 1
+		x= x - 10
+	
 	$sp.set_region_rect(Rect2(0,0,y *51 / 100,4))
 	if(y<real_sp):
-		y = y + 0.5
+		y = y + 1
 	elif(y==real_sp):
 		pass
 	else:
-		y= y - 0.5
+		y= y - 5
+	
 	$tp.set_region_rect(Rect2(0,0,z *51 / 100,4))
 	if(z<real_tp):
-		z = z + 0.5
+		z = z + 1
 	elif(z==real_tp):
 		pass
 	else:
-		z= z - 0.5
+		z= z - 5
 
 
 func _on_Player_health_changed(healt):
-	real_hp = healt
+	if healt > 0:
+		real_hp = healt
+	else:
+		real_hp = 0
 
 func _on_Player_mana_changed(mana):
-	real_tp = mana
+	if mana > 0:
+		real_tp = mana
+	else:
+		real_tp = 0

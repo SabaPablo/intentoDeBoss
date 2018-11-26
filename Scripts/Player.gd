@@ -15,7 +15,6 @@ const TYPE = "PLAYER"
 var in_attack = false;
 var power
 var friction = 6
-var lives = 3
 var hurtMode = false
 var dead = false
 var velocity = Vector2()
@@ -24,8 +23,10 @@ var state = "default"
 var sword = preload("res://Items/sword.tscn")
 var halo = preload("res://Efects/nebula.tscn")
 var fire_power = preload("res://Items/magic.tscn")
+var mana = 1000
 
 func _physics_process(delta):
+	add_mana()
 	if(dead):
 		return
 	match state:
@@ -34,7 +35,7 @@ func _physics_process(delta):
 		"swing":
 			state_swing(delta)
 		"dead":
-			game_over(delta)
+			game_over()
 	damage_loop()
 
 func atack():
@@ -49,8 +50,6 @@ func state_default(delta):
 		movement_loop(delta)
 	else:
 		dead()
-		state = "dead"
-		dead = true
 	gravity_loop(delta)
 	if hurting:
 		set_global_position(global_position + knockdir)
@@ -107,11 +106,13 @@ func movement_loop(delta):
 		use_item(sword)
 		anim_switch("Atack1")
 	if MAGIC_PUNCH and is_on_floor():
-		$Timer.start()
-		anim_switch("Power")
-		var newitem = halo.instance()
-		add_child(newitem)
-		
+		if mana > 300: 
+			$Timer.start()
+			anim_switch("Power")
+			var newitem = halo.instance()
+			add_child(newitem)
+		else:
+			pass
 		state = "swing"
 	friction = FRICTION_IDLE
 	if UP:
@@ -165,6 +166,7 @@ func _on_Attack_Area_body_entered(body):
 		body.hurt()
 		
 func use_magic():
+	
 	var newitem = fire_power.instance()
 	newitem.set_player(self)
 	newitem.set_flip($Sprite.flip_h)
@@ -176,7 +178,8 @@ func use_magic():
 	get_parent().add_child(newitem)
 	if get_tree().get_nodes_in_group(str(newitem.get_name(), self)).size() > newitem.maxamount:
 		newitem.queue_free()
-	emit_signal("mana_changed", -30)
+	mana -= 300
+	emit_signal("mana_changed", mana)
 	
 func use_item(item):
 	var newitem = item.instance()
@@ -191,12 +194,21 @@ func use_item(item):
 
 func _on_Timer_timeout():
 	if state == "dead":
-		game_over()
 		$Timer.stop()
 	else:
 		use_magic()
 		$Timer.stop()
 	
 func game_over():
+	$Stand.disabled = true
+	$Layed.disabled = true
+	$Area2D/CollisionShape2D.disabled = true
+	$Attack_Area/CollisionShape2D.disabled = true
 	$Anim.play("GameOver")
+	dead = true
 	$Control/PopupDialog.popup_centered()
+	
+func add_mana():
+	if mana < 1000:
+		mana += 1
+	emit_signal("mana_changed", mana/10)
