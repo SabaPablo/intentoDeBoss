@@ -111,9 +111,10 @@ func movement_loop(delta):
 			anim_switch("Power")
 			var newitem = halo.instance()
 			add_child(newitem)
+			state = "swing"
 		else:
 			pass
-		state = "swing"
+		
 	friction = FRICTION_IDLE
 	if UP:
 		jump()
