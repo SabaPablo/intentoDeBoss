@@ -156,8 +156,8 @@ func fallingDown():
 
 func dead():
 	anim_switch("Tired")
-	print("dead()")
-	$Control/PopupDialog.popup_centered()
+	game_over()
+	
 	
 		
 func _on_Attack_Area_body_entered(body):
@@ -190,8 +190,13 @@ func use_item(item):
 		newitem.queue_free()
 
 func _on_Timer_timeout():
-	use_magic()
-	$Timer.stop()
+	if state == "dead":
+		game_over()
+		$Timer.stop()
+	else:
+		use_magic()
+		$Timer.stop()
 	
-func game_over(delta):
-	print("game_over()")
+func game_over():
+	$Anim.play("GameOver")
+	$Control/PopupDialog.popup_centered()
