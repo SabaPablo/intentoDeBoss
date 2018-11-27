@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Personajes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level/parallacs.tscn" type="PackedScene" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://Items/sign.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Personajes/Skeleton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Stage/house.tscn" type="PackedScene" id=7]
+[ext_resource path="res://SFX/level_0.ogg" type="AudioStream" id=8]
 
-[node name="world" type="Node2D" index="0"]
+[node name="world" type="Node2D"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -85,6 +86,15 @@ position = Vector2( 2939.57, 85.7657 )
 
 position = Vector2( 3799.89, 128.101 )
 next_lvl = "res://world.tscn"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 8 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 [connection signal="health_changed" from="Player" to="hud" method="_on_Player_health_changed"]
 

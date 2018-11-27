@@ -29,7 +29,7 @@ length = 1.0
 loop = false
 step = 0.1
 
-[node name="blood" type="Node2D" index="0"]
+[node name="blood" type="Node2D"]
 
 scale = Vector2( 0.1, 0.1 )
 z_index = 2
