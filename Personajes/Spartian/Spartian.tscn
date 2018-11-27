@@ -32,16 +32,16 @@
 [ext_resource path="res://Images/boss_1/Dead/knight dead animation_8.png" type="Texture" id=30]
 [ext_resource path="res://Images/boss_1/Dead/knight dead animation_9.png" type="Texture" id=31]
 [ext_resource path="res://Images/boss_1/Dead/knight dead animation_10.png" type="Texture" id=32]
-[ext_resource path="res://Images/boss_1/Hurt/knight hurt animation_1.png" type="Texture" id=33]
-[ext_resource path="res://Images/boss_1/Hurt/knight hurt animation_2.png" type="Texture" id=34]
-[ext_resource path="res://Images/boss_1/Walk/knight walk animation_1.png" type="Texture" id=35]
-[ext_resource path="res://Images/boss_1/Walk/knight walk animation_2.png" type="Texture" id=36]
-[ext_resource path="res://Images/boss_1/Walk/knight walk animation_3.png" type="Texture" id=37]
-[ext_resource path="res://Images/boss_1/Walk/knight walk animation_4.png" type="Texture" id=38]
-[ext_resource path="res://Images/boss_1/Walk/knight walk animation_5.png" type="Texture" id=39]
-[ext_resource path="res://Images/boss_1/Walk/knight walk animation_6.png" type="Texture" id=40]
-[ext_resource path="res://Images/boss_1/Walk/knight walk animation_7.png" type="Texture" id=41]
-[ext_resource path="res://Images/boss_1/Walk/knight walk animation_8.png" type="Texture" id=42]
+[ext_resource path="res://Images/boss_1/Walk/knight walk animation_1.png" type="Texture" id=33]
+[ext_resource path="res://Images/boss_1/Walk/knight walk animation_2.png" type="Texture" id=34]
+[ext_resource path="res://Images/boss_1/Walk/knight walk animation_3.png" type="Texture" id=35]
+[ext_resource path="res://Images/boss_1/Walk/knight walk animation_4.png" type="Texture" id=36]
+[ext_resource path="res://Images/boss_1/Walk/knight walk animation_5.png" type="Texture" id=37]
+[ext_resource path="res://Images/boss_1/Walk/knight walk animation_6.png" type="Texture" id=38]
+[ext_resource path="res://Images/boss_1/Walk/knight walk animation_7.png" type="Texture" id=39]
+[ext_resource path="res://Images/boss_1/Walk/knight walk animation_8.png" type="Texture" id=40]
+[ext_resource path="res://Images/boss_1/Hurt/knight hurt animation_1.png" type="Texture" id=41]
+[ext_resource path="res://Images/boss_1/Hurt/knight hurt animation_2.png" type="Texture" id=42]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -66,14 +66,14 @@ animations = [ {
 "name": "Dead",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 33 ), ExtResource( 34 ) ],
-"loop": true,
-"name": "Hurt",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ) ],
+"frames": [ ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ) ],
 "loop": true,
 "name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 41 ), ExtResource( 42 ) ],
+"loop": true,
+"name": "Hurt",
 "speed": 5.0
 } ]
 

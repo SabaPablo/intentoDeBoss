@@ -1,6 +1,6 @@
 extends Node2D
 
-var TYPE = null
+var TYPE = "magic"
 const DAMAGE = 30
 var velocity = Vector2(80,0)
 var maxamount = 1
@@ -35,3 +35,8 @@ func _on_Timer_timeout():
 func _on_Timer2_timeout():
 	if(play.has_method("state_swing")):
 		play.state = "default"
+
+func desapear():
+	_on_Timer2_timeout()
+	queue_free()
+	

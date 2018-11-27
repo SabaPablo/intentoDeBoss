@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 const GRAVITY = 10
-const SPEED = 20
-const SPEED_ANGRY = 35 
+const SPEED = 35
+const SPEED_ANGRY = 60 
 const DAMAGE = 25
 const FLOOR = Vector2(0,-1)
 
@@ -31,15 +31,14 @@ func _physics_process(delta):
 			else:
 				pass
 	else:
-		pass
+		velocity.x = 0
 	velocity = move_and_slide(velocity,FLOOR)
 	damage_loop()
 	if is_on_wall():
 		turn()
-		
 
 func attack():
-	velocity.x = 0
+	#velocity.x = 0
 	$Animation.play("Attack")
 
 func walk():
@@ -52,6 +51,7 @@ func walk():
 	velocity.y += GRAVITY
 	
 func seek_and_destroy():
+	
 	if is_on_wall():
 		jump(rand_range(1,3))
 	else:
@@ -65,10 +65,7 @@ func jump(power):
 	velocity.y = jump * power
 	if (rand_range(0,1) < 0.5 ):
 		get_parent().add_child(skel)
-	
-	
-	
-	
+
 func evil_movement_loop():
 	velocity.x = SPEED_ANGRY * direction
 	if direction == 1:
@@ -108,10 +105,7 @@ func hurt():
 		
 func turn():
 	direction = direction * -1
-	#$Animation/AreaDeVision/CollisionShape2D.position.x *= -1
-	#$Animation/AttackeZone/CollisionShape2D.position.x *= -1
-	#$RayCast2D.position.x *= -1
-	#$halberd.position.x *= -1
+	$hitbox.position.x *= -1
 	
 	
 func damage_loop():
@@ -132,3 +126,11 @@ func _on_Animation_animation_finished():
 	if status == "dead":
 		queue_free()
 
+
+
+
+
+func _on_seek_body_entered(body):
+	if body.name == "Player":
+		evil_movement_loop()
+		#attack()

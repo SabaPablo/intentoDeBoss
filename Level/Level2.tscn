@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://TileSets/DirtAutoTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Level/TileMap.gd" type="Script" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://Personajes/Skeleton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Stage/WoodDoor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Level/mountain.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Stage/hud.tscn" type="PackedScene" id=8]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -131,5 +132,7 @@ _sections_unfolded = [ "Scroll" ]
 [node name="Main" parent="ParallaxBackground" index="0" instance=ExtResource( 7 )]
 
 position = Vector2( 0, 50 )
+
+[node name="hud" parent="." index="7" instance=ExtResource( 8 )]
 
 
