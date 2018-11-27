@@ -72,12 +72,12 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 164.181, 183.592 )
+extents = Vector2( 66.0747, 77.5914 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 136.269, 172.736 )
+extents = Vector2( 129.531, 148.983 )
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 
@@ -99,8 +99,6 @@ playing = true
 
 [node name="hitbox" type="Area2D" parent="." index="1"]
 
-editor/display_folded = true
-visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -111,13 +109,12 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
 
-position = Vector2( -16.6556, 170.257 )
+position = Vector2( 13.3444, 105.257 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
-visible = false
-position = Vector2( -21.094, 177.451 )
+position = Vector2( -11.094, 192.451 )
 shape = SubResource( 3 )
 
 

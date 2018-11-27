@@ -3,10 +3,10 @@
 [ext_resource path="res://Items/magic.gd" type="Script" id=1]
 [ext_resource path="res://Efects/sunburn.tscn" type="PackedScene" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 7.05682, 6.10817 )
+radius = 4.75389
 
 [node name="magic" type="KinematicBody2D"]
 

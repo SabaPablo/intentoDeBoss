@@ -110,6 +110,7 @@ func _on_Timer_timeout():
 
 func dead():
 	$CollisionShape2D.set_disabled(true) 
+	velocity.x = 0
 	$Animation.play("Dead")
 	status = "dead"
 
@@ -136,11 +137,15 @@ func damage_loop():
 			dead()
 	for area in $hitbox.get_overlapping_areas():
 		var body = area.get_parent()
+		
 		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE:
 			health -= body.get("DAMAGE")
 			hitstun = 10
 			knockdir = transform.origin - body.transform.origin
 			emit_signal("health_changed", health)
+		if body.name == "magic":
+			body.desapear()
+				
 
 func _on_Animation_animation_finished():
 	if status == "dead":
