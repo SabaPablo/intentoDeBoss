@@ -3,25 +3,26 @@ extends KinematicBody2D
 const GRAVITY = 10
 const SPEED = 20
 const SPEED_ANGRY = 35 
-const DAMAGE = 10
+const DAMAGE = 25
 const FLOOR = Vector2(0,-1)
-var velocity = Vector2()
-var hitstun = 0
-var knockdir = Vector2(0,0)
-const TYPE = "ENEMY"
-var direction = 1
-var wait = false
-var modeAttack = false
-var exclamations = preload("res://Efects/expresions/buble_expresion.tscn")
-var fireDead = preload("res://Efects/fire.tscn")
-var health = 150
-var status = "live"
 
-func _ready():
-	pass
+var velocity = Vector2()
+var knockdir = Vector2(0,0)
+var skeleton = preload("res://Personajes/Skeleton.tscn")
+var fireDead = preload("res://Efects/fire.tscn")
+
+const TYPE = "ENEMY"
+var status = "live"
+var modeAttack = false
+var wait = false
+var hitstun = 0
+var direction = 1
+var health = 1500
+var jump = -300
 	
 func _physics_process(delta):
 	if status == "live":
+		seek_and_destroy()
 		if modeAttack:
 			attack()
 		else:
@@ -41,15 +42,32 @@ func attack():
 	velocity.x = 0
 	$Animation.play("Attack")
 
-func relax_movement_loop():
+func walk():
 	velocity.x = SPEED * direction
 	if direction == 1:
 		$Animation.flip_h = false
 	else:
 		$Animation.flip_h = true
-	
 	$Animation.play("Walk")
 	velocity.y += GRAVITY
+	
+func seek_and_destroy():
+	if is_on_wall():
+		jump(rand_range(1,3))
+	else:
+		walk()
+
+func jump(power):
+	var skel = skeleton.instance()
+	skel.position = get_global_position()
+	skel.position.x +=50
+	skel.position.y +=50
+	velocity.y = jump * power
+	if (rand_range(0,1) < 0.5 ):
+		get_parent().add_child(skel)
+	
+	
+	
 	
 func evil_movement_loop():
 	velocity.x = SPEED_ANGRY * direction
@@ -57,11 +75,9 @@ func evil_movement_loop():
 		$Animation.flip_h = false
 	else:
 		$Animation.flip_h = true
-	
 	$Animation.play("Walk_Angry")
 	velocity.y += GRAVITY
 	
-
 
 
 
@@ -115,3 +131,4 @@ func damage_loop():
 func _on_Animation_animation_finished():
 	if status == "dead":
 		queue_free()
+

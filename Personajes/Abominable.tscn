@@ -79,7 +79,7 @@ extents = Vector2( 164.181, 183.592 )
 custom_solver_bias = 0.0
 extents = Vector2( 136.269, 172.736 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" index="0"]
+[node name="KinematicBody2D" type="KinematicBody2D"]
 
 scale = Vector2( 0.2, 0.2 )
 input_pickable = false
@@ -93,13 +93,14 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( 4, 0 )
 frames = SubResource( 1 )
-animation = "Walk"
-frame = 1
+animation = "Idle"
+frame = 2
 playing = true
 
 [node name="hitbox" type="Area2D" parent="." index="1"]
 
 editor/display_folded = true
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -115,8 +116,8 @@ shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
+visible = false
 position = Vector2( -21.094, 177.451 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
 
 
