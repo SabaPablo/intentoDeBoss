@@ -60,7 +60,7 @@ func seek_and_destroy():
 func jump(power):
 	var skel = skeleton.instance()
 	skel.position = get_global_position()
-	skel.position.x +=50
+	skel.position.x +=50 * - direction
 	skel.position.y +=50
 	velocity.y = jump * power
 	if (rand_range(0,1) < 0.5 ):
