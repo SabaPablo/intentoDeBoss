@@ -28,7 +28,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 22.1211, 35.9684 )
 
-[node name="ChangeScene" type="Node2D" index="0"]
+[node name="ChangeScene" type="Node2D"]
 
 script = ExtResource( 1 )
 next_lvl = null
