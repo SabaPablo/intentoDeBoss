@@ -117,7 +117,6 @@ stretch_mode = 0
 
 [node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground" index="3"]
 
-editor/display_folded = true
 z_index = -17
 motion_scale = Vector2( 0.4, 1 )
 motion_offset = Vector2( 0, 0 )

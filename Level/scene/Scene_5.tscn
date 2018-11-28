@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Scene.gd" type="Script" id=1]
+[ext_resource path="res://Images/blue.jpg" type="Texture" id=2]
+[ext_resource path="res://Images/scene/chica_5.png" type="Texture" id=3]
+[ext_resource path="res://Images/scene/chico_5.png" type="Texture" id=4]
+
+[node name="Control" type="Control"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+next = "res://Level/level_1.tscn"
+
+[node name="blue" type="Sprite" parent="." index="0"]
+
+position = Vector2( 160.43, 91.9817 )
+scale = Vector2( 0.173363, 0.17404 )
+texture = ExtResource( 2 )
+
+[node name="chica_4" type="Sprite" parent="." index="1"]
+
+position = Vector2( 61.5726, 75.6542 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="chico_4" type="Sprite" parent="." index="2"]
+
+position = Vector2( 251.105, 105.169 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Label" type="Label" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 5.0
+margin_top = 150.0
+margin_right = 298.0
+margin_bottom = 198.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0.980469, 0.980469, 0.980469, 1 )
+text = "Unos vecinos me dijeron que lo vieron deambular por la cueva… estoy muy asustada, ve a buscarlo!"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
+
+[node name="Label2" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 188.0
+margin_top = 9.0
+margin_right = 417.0
+margin_bottom = 51.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0.980469, 0.980469, 0.980469, 1 )
+text = "Despreocúpate, yo iré... Nunca permitiré que nada le pase…"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
+
+
