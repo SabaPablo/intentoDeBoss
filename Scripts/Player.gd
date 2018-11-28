@@ -109,6 +109,7 @@ func movement_loop(delta):
 		if mana > 300: 
 			$Timer.start()
 			anim_switch("Power")
+			get_tree().get_nodes_in_group("sfx")[0].get_node("fireball_player").play()
 			var newitem = halo.instance()
 			add_child(newitem)
 			state = "swing"
@@ -137,6 +138,7 @@ func moveRigth():
 	$Camera2D.set_offset(Vector2(min(100,res),$Camera2D.get_offset().y))
 	if is_on_floor():
 		anim_switch("Run")
+		#get_tree().get_nodes_in_group("sfx")[0].get_node("walk_player").play()
 
 func moveLeft():
 	velocity.x -= ACCELERATION
@@ -146,6 +148,7 @@ func moveLeft():
 	$Camera2D.set_offset(Vector2(max(-100,res),$Camera2D.get_offset().y))
 	if is_on_floor():
 		anim_switch("Run")
+		#get_tree().get_nodes_in_group("sfx")[0].get_node("walk_player").play()
 
 func jump():
 	if is_on_floor():
@@ -209,7 +212,17 @@ func game_over():
 	dead = true
 	$Control/PopupDialog.popup_centered()
 	
+	
+	
 func add_mana():
 	if mana < 1000:
-		mana += 1
+		mana += 0.5
 	emit_signal("mana_changed", mana/10)
+
+
+func add_healt(head):
+	get_tree().get_nodes_in_group("sfx")[0].get_node("drink_player").play()
+	health += head
+	if(health > 100):
+		health = 100
+	emit_signal("health_changed", health)

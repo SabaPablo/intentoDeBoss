@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/intro.gd" type="Script" id=1]
+[ext_resource path="res://Level/scene/Scene_0.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Level/scene/Scene_1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Level/scene/Scene_2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Level/scene/Scene_3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SFX/intro_depech.ogg" type="AudioStream" id=6]
+
+[node name="intro" type="Node"]
+
+script = ExtResource( 1 )
+next = "res://Level/level_0.tscn"
+
+[node name="Control" parent="." index="0" instance=ExtResource( 2 )]
+
+script = null
+
+[node name="Control2" parent="." index="1" instance=ExtResource( 3 )]
+
+visible = false
+script = null
+
+[node name="Control3" parent="." index="2" instance=ExtResource( 4 )]
+
+visible = false
+script = null
+
+[node name="Control4" parent="." index="3" instance=ExtResource( 5 )]
+
+visible = false
+script = null
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+

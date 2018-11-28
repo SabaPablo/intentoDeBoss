@@ -17,8 +17,8 @@ var modeAttack = false
 var wait = false
 var hitstun = 0
 var direction = 1
-var health = 1500
-var jump = -300
+var health = 500
+var jump = -200
 	
 func _physics_process(delta):
 	if status == "live":
@@ -93,7 +93,7 @@ func _on_AttackeZone_body_exited(body):
 		modeAttack = false
 
 func _on_Timer_timeout():
-	wait = false
+	modeAttack = true
 
 func dead():
 	$CollisionShape2D.set_disabled(true) 

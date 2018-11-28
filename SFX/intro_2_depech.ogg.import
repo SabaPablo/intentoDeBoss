@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/intro_2_depech.ogg-e1b54b9e9839b78cc15eeb32dc44e0c5.oggstr"
+
+[deps]
+
+source_file="res://SFX/intro_2_depech.ogg"
+dest_files=[ "res://.import/intro_2_depech.ogg-e1b54b9e9839b78cc15eeb32dc44e0c5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

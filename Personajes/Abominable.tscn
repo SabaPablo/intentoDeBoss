@@ -94,7 +94,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 4, 0 )
 frames = SubResource( 1 )
 animation = "Walk"
-frame = 7
+frame = 6
 playing = true
 
 [node name="hitbox" type="Area2D" parent="." index="1"]
@@ -116,5 +116,14 @@ shape = SubResource( 2 )
 
 position = Vector2( -18.2288, 250.718 )
 shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

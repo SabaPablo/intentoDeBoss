@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Stage/WoodDoor.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/house.gd" type="Script" id=1]
 [ext_resource path="res://Stage/Area2D.gd" type="Script" id=2]
 [ext_resource path="res://Images/house.png" type="Texture" id=3]
 
@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 22.1211, 75.4644 )
 
-[node name="ChangeScene" type="Node2D"]
+[node name="ChangeScene" type="Node2D" index="0"]
 
 scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )

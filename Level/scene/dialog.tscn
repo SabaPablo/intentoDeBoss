@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/dialog.gd" type="Script" id=1]
+[ext_resource path="res://Level/scene/Scene_4.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Level/scene/Scene_5.tscn" type="PackedScene" id=3]
+
+[node name="dialog" type="Node" index="0"]
+
+script = ExtResource( 1 )
+next = "res://Level/level_1.tscn"
+
+[node name="Control" parent="." index="0" instance=ExtResource( 2 )]
+
+script = null
+
+[node name="Control2" parent="." index="1" instance=ExtResource( 3 )]
+
+visible = false
+script = null
+
+

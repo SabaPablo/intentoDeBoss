@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Items.gd" type="Script" id=1]
+[ext_resource path="res://Images/items_by_reidyaro-d47dn3h_0_3.png" type="Texture" id=2]
+[ext_resource path="res://SFX/bubble3.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3.39716, 4.02023 )
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 2.49811
+
+[node name="Items" type="RigidBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 5
+frame = 16
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="Area2D" type="Area2D" parent="." index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+
+position = Vector2( 3.8147e-06, 1.17272 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+

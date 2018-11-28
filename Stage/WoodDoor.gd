@@ -24,4 +24,4 @@ func got_key():
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	get_tree().change_scene(get_parent().next_lvl)
+	get_tree().change_scene(next_lvl)

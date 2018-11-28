@@ -17,6 +17,7 @@ var exclamations = preload("res://Efects/expresions/buble_expresion.tscn")
 var fireDead = preload("res://Efects/fire.tscn")
 var health = 30
 var status = "live"
+var play_dead = true
 
 func _ready():
 	pass
@@ -112,6 +113,9 @@ func dead():
 	$CollisionShape2D.set_disabled(true) 
 	velocity.x = 0
 	$Animation.play("Dead")
+	if play_dead:
+		play_dead = false
+		$sfx/dead_skeleton.play()
 	status = "dead"
 
 func hurt():
